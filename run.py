@@ -81,17 +81,21 @@ def main_menu():
     while (not validation.validate_choice(choice)):
         choice = input( "Select option (1-6) \n")
 
-    match choice:
-        case "1":
-            register_price() 
-        case "2":
-            create_report()
-        case "3":
-            erase_month()
-        case "4":
-            show_status()
-        case "5":
-            help()
-    # end match
+    if (choice == "1"):
+        # comment: 
+        register_price()
+    elif (choice == "2"):
+        # comment: 
+        create_report()
+    elif (choice == "3"):
+        # comment: 
+        erase_month()
+    elif (choice == "4"):
+        # comment: 
+        show_status()
+    elif (choice == "5"):
+        # comment: 
+        show_help()
+    # end if
 
 main_menu()
