@@ -16,7 +16,7 @@ SHEET = GSPREAD_CLIENT.open('Charger_consumption_2023')
 
 consumption = SHEET.worksheet('Status_2023')
 data = consumption.get_all_values()
-print(data)
+#print(data)
 
 # \n is needed for getting it to work in Heroku
 # data_str = input("Please enter:\n")
@@ -28,21 +28,21 @@ def register_price():
     """
     Shows dialog and recieve users input (month and price)
     """
-    pass
+    print("register price")
 # end def
 
 def create_report():
     """
     Shows dialog an recieves users input (month)
     """
-    pass
+    print("create report")
 # end def
 
 def erase_month():
     """
     Shows dialog where user choose which months data to erase 
     """
-    pass
+    print("erase month")
 # end def
 
 def show_status():
@@ -50,14 +50,14 @@ def show_status():
     Returns the status for all months
     (month, price, report, date)
     """
-    pass
+    print("show status")
 # end def
 
 def show_help():
     """
     Shows instructions for how to use the system
     """
-    pass
+    print("show help")
 # end def
 
 def exit():
@@ -66,3 +66,32 @@ def exit():
     """
     pass
 # end def
+
+def main_menu():
+    print("\nMenu ")
+    print("----")
+    print("1 - REGISTER PRICE")
+    print("2 - CREATE REPORT")
+    print("3 - ERASE MONTH")
+    print("4 - SHOW STATUS")
+    print("5 - HELP")
+    print("6 - EXIT")
+
+    choice = input( "Select option (1-6) \n")
+    while (not validation.validate_choice(choice)):
+        choice = input( "Select option (1-6) \n")
+
+    match (choice):
+        case ("1"):
+            register_price() 
+        case ("2"):
+            create_report()
+        case ("3"):
+            erase_month()
+        case ("4"):
+            show_status()
+        case ("5"):
+            help()
+    # end match
+
+main_menu()
