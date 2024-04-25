@@ -81,16 +81,16 @@ def main_menu():
     while (not validation.validate_choice(choice)):
         choice = input( "Select option (1-6) \n")
 
-    match (choice):
-        case ("1"):
+    match choice:
+        case "1":
             register_price() 
-        case ("2"):
+        case "2":
             create_report()
-        case ("3"):
+        case "3":
             erase_month()
-        case ("4"):
+        case "4":
             show_status()
-        case ("5"):
+        case "5":
             help()
     # end match
 
