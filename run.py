@@ -1,3 +1,4 @@
+import os
 import gspread
 from google.oauth2.service_account import Credentials
 import validation
@@ -28,7 +29,38 @@ def register_price():
     """
     Shows dialog and recieve users input (month and price)
     """
+    year_overview = SHEET.worksheet('Status_2023')
+    
+    os.system('clear')
     print("register price")
+    print('--------------')
+
+    # Prompt user to choose month (ex january or jan)
+    user_month = input("Enter month \n")
+
+    # Validate month
+
+    # Check if reports exists for chosen month
+    # helper function (will be used from other menu options as well)
+
+    # Check if price exists for chosen month
+
+    # Prompt the user to enter price
+    user_price = input("Enter price \n")
+
+    # Check if the entered price is a positive float
+
+    # Check if the entered price is reasonable
+
+    # Update the price in the sheet
+    cell = year_overview.find(user_month)
+    print(f"Found {user_month} in row:{cell.row} col:{cell.col}")
+    year_overview.update_cell(cell.row,2,user_price)
+
+    print(f"Price updated successfully: {user_price}")
+    input("Press enter to continue")
+
+
 # end def
 
 def create_report():
