@@ -1,6 +1,7 @@
 import gspread
 from google.oauth2.service_account import Credentials
 import validation
+from prettytable import PrettyTable
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -14,8 +15,7 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('Charger_consumption_2023')
 
-consumption = SHEET.worksheet('Status_2023')
-data = consumption.get_all_values()
+
 #print(data)
 
 # \n is needed for getting it to work in Heroku
@@ -51,6 +51,22 @@ def show_status():
     (month, price, report, date)
     """
     print("show status")
+
+    # Get the data from the workbook 'Status_2023'
+    consumption = SHEET.worksheet('Status_2023')
+    data = consumption.get_all_values()
+    # print(data)
+    # Sort the data, starting with january, but how? (Add a new column with number 
+    # or is it posible to use a function to convert month name to month number) 
+
+    # Create table
+    status_table = PrettyTable(data[0]) 
+
+    for idx in range(1, len(data)):
+        # Iterates the rows in the data from the workbook and adds them to the table
+        status_table.add_row(data[idx])
+    print (status_table)
+    input("Press enter to continue")
 # end def
 
 def show_help():
@@ -60,7 +76,7 @@ def show_help():
     print("show help")
 # end def
 
-def exit():
+#def exit():
     """
     Exits the application 
     """
@@ -99,3 +115,4 @@ def main_menu():
     # end if
 
 main_menu()
+exit()
