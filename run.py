@@ -2,6 +2,7 @@ import os
 import gspread
 from google.oauth2.service_account import Credentials
 import validation
+import common
 from prettytable import PrettyTable
 
 SCOPE = [
@@ -40,6 +41,7 @@ def register_price():
 
     # Validate month
 
+
     # Check if reports exists for chosen month
     # helper function (will be used from other menu options as well)
 
@@ -66,8 +68,33 @@ def register_price():
 def create_report():
     """
     Shows dialog an recieves users input (month)
+    Validates input data and creates a report
+    Report is created as a new workbook in the worksheet 
+    and shown to the user as a prettytable-formatted table
     """
-    print("create report")
+    os.system('clear')
+    print("Create Report")
+    print('-------------')
+
+    # Prompt user to choose month (ex january or jan)
+    user_month = input("Enter month \n")
+
+    # Validate the chosen month
+    while (not validation.validate_month(user_month)):
+        user_month = input("Enter month \n")
+
+    # Check if report exists for chosen month
+
+    # Check that price exists (UPDATE FLOWCHART)
+
+    # Calculate cost for each charger
+    print('Calculate cost...')
+
+    # Create new workbook
+
+    # Update status workbook ()
+
+    input("Press enter to continue")
 # end def
 
 def erase_month():
