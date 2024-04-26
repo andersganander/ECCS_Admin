@@ -19,7 +19,7 @@ def validate_month(month):
 
     # check non etc
 
-    valid_months = months = [
+    valid_months = [
     "january", "jan",
     "february", "feb",
     "march", "mar",
