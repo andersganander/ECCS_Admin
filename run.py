@@ -4,6 +4,7 @@ from google.oauth2.service_account import Credentials
 import validation
 import common
 from prettytable import PrettyTable
+import datetime
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -77,11 +78,11 @@ def create_report():
     print('-------------')
 
     # Prompt user to choose month (ex january or jan)
-    user_month = input("Enter month \n")
+    user_month = input("Enter month (1-12) \n")
 
     # Validate the chosen month
     while (not validation.validate_month(user_month)):
-        user_month = input("Enter month \n")
+        user_month = input("Enter month (1-12) \n")
 
     # Check if report exists for chosen month
 
@@ -90,9 +91,20 @@ def create_report():
     # Calculate cost for each charger
     print('Calculate cost...')
 
-    # Create new workbook
+    # Create report name
+    month_short = datetime.datetime(2023,int(user_month),1).strftime("%b")
+    report_name = f"Report_{month_short}_2023"
 
-    # Update status workbook ()
+    # Create new worksheet
+    # worksheet = sh.add_worksheet(title="A worksheet", rows=100, cols=20)
+    testheader = ['ChargerName','TotalConsumption','TotalCost']
+    report = SHEET.add_worksheet(report_name, 100, 20)
+    report.append_row(testheader)
+    report.format('A1:C1', {'textFormat': {'bold': True}})
+    report.append_row(['1811003567M','78,88','0'])
+    report.set_basic_filter(1, 1, 1, 3)
+
+    # Update status worksheet ()
 
     input("Press enter to continue")
 # end def

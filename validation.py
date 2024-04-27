@@ -14,28 +14,18 @@ def validate_choice(choice):
 # end def
 
 def validate_month(month):
-    """ Validates month"""
-    # check type
-
-    # check non etc
-
-    valid_months = [
-    "january", "jan",
-    "february", "feb",
-    "march", "mar",
-    "april", "apr",
-    "may", "may",
-    "june", "jun",
-    "july", "jul",
-    "august", "aug",
-    "september", "sep",
-    "october", "oct",
-    "november", "nov",
-    "december", "dec"
-    ]
-
-    if month.lower() in valid_months:
-        return True
-    else:
+    """ Validates that month is an intteger between
+     1 (inclusive) and 12 (inclusive)"""
+    # check for None
+    if month is None:
         return False
+   
+    # check type and the value
+    try:
+        converted = int(month)
+        if 1 <= converted <=12: 
+            return True
+    except ValueError:
+        return False
+# end def
 

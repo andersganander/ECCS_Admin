@@ -8,3 +8,4 @@ node_modules/
 .github/
 creds.json
 test_validation.py
+elpristest.py
