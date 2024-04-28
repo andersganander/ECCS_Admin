@@ -90,7 +90,8 @@ def create_report():
     # Check if report exists for chosen month
 
     # Check that price exists (UPDATE FLOWCHART)
-
+    user_price = 0.5
+    
     # Calculate cost for each charger
     print('Calculate cost...')
     # Code from S O
@@ -107,7 +108,7 @@ def create_report():
     print(found_records)
     print(f"Found records antal: {len(found_records)}")
 
-    report_list = calculate_cost(found_records, 0.5)
+    report_list = calculate_cost(found_records, user_price)
     print('****** report_list ******')
     print(report_list)
 
@@ -127,6 +128,17 @@ def create_report():
     report.set_basic_filter(1, 1, len(report_list)+1, 3)
 
     # Update status worksheet ()
+    month_long = datetime.datetime(2023,int(user_month),1).strftime("%B")
+    d = datetime.datetime.now()
+    date_str = d.strftime("%x")
+    print(date_str)
+    print(month_long)
+    status = SHEET.worksheet('Status_2023')
+    cell = status.find(month_long)
+    print(f"Found {month_long} in row:{cell.row} col:{cell.col}")
+    status.update_cell(cell.row,2,user_price)
+    status.update_cell(cell.row,3,report_name)
+    status.update_cell(cell.row,4,date_str)
 
     input("Press enter to continue")
 # end def
@@ -280,18 +292,3 @@ def combine_charger_consumptions(data, price_per_unit):
     # Create a list of dictionaries from the accumulated totals
     result_list = [{'ChargerName': name, 'Consumption': details['Consumption'], 'Cost': round(details['Cost'], 2)} for name, details in charger_totals.items()]
     return result_list
-
-# Example usage
-data = [
-    {'SerialNumber': '1811003583M', 'ChargerName': '5006 - Bromma Kyrkväg 455F', 'Year': 2023, 'Month': 1, 'Consumption': 5304, 'SessionType': 'EV'},
-    {'SerialNumber': '1811003583M', 'ChargerName': '5006 - Bromma Kyrkväg 455F', 'Year': 2023, 'Month': 1, 'Consumption': 19444, 'SessionType': 'Schuko'},
-    {'SerialNumber': '1811003595M', 'ChargerName': '5003 - Bromma Kyrkväg 455E', 'Year': 2023, 'Month': 1, 'Consumption': 525, 'SessionType': 'Schuko'},
-    {'SerialNumber': '1811003601M', 'ChargerName': '5010 - Bromma kyrkväg 455D', 'Year': 2023, 'Month': 1, 'Consumption': 22335, 'SessionType': 'EV'},
-    {'SerialNumber': '1811003607M', 'ChargerName': '5009 - Bromma kyrkväg 455C', 'Year': 2023, 'Month': 1, 'Consumption': 20406, 'SessionType': 'Schuko'},
-    {'SerialNumber': '1811003894M', 'ChargerName': '5007 - Bromma Kyrkväg 455A', 'Year': 2023, 'Month': 1, 'Consumption': 485, 'SessionType': 'Schuko'},
-    {'SerialNumber': '1812004022M', 'ChargerName': '5004 - Bromma Kyrkväg 455H', 'Year': 2023, 'Month': 1, 'Consumption': 6729, 'SessionType': 'Schuko'}
-]
-
-price_per_unit = 0.15  # Assuming the price per unit of consumption is $0.15
-result = combine_charger_consumptions(data, price_per_unit)
-print(result)
