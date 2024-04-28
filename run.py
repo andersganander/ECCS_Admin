@@ -80,7 +80,7 @@ def create_report():
     print("Create Report")
     print('-------------')
 
-    # Prompt user to choose month (ex january or jan)
+    # Prompt user to choose month (ex 1 = january, 2 = february etc)
     user_month = input("Enter month (1-12) \n")
 
     # Validate the chosen month
@@ -185,11 +185,41 @@ def calculate_cost(data, price):
     
 # end def
 
-def erase_month():
+def delete_report():
     """
     Shows dialog where user choose which months data to erase 
     """
-    print("erase month")
+    print("***** ERASE MONTH *****")
+    
+    # Prompt user to choose month (ex 1 = january, 2 = february etc)
+    user_month = input("Enter month (1-12) \n")
+
+    # Validate the chosen month
+    while (not validation.validate_month(user_month)):
+        user_month = input("Enter month (1-12) \n")
+
+     # Create report name
+    month_short = datetime.datetime(2023,int(user_month),1).strftime("%b")
+    report_name = f"Report_{month_short}_2023"
+
+    # Check if report exists
+
+    # Ask user if they want to proceed
+
+    # Delete the worksheet
+    report_to_delete = SHEET.worksheet(report_name)
+    SHEET.del_worksheet(report_to_delete)
+    print(f"{report_name} deleted")
+    
+    # Update status (refactor with function in common, at least some of the code) 
+    status = SHEET.worksheet('Status_2023')
+    cell = status.find(report_name)
+    print(f"Found {report_name} in row:{cell.row} col:{cell.col}")
+    status.update_cell(cell.row,2,'')
+    status.update_cell(cell.row,3,'')
+    status.update_cell(cell.row,4,'')
+    print(f"Status for {user_month} updated.")
+    input("Press enter to continue")
 # end def
 
 def show_status():
@@ -235,7 +265,7 @@ def main_menu():
     print("----")
     print("1 - REGISTER PRICE")
     print("2 - CREATE REPORT")
-    print("3 - ERASE MONTH")
+    print("3 - DELETE REPORT")
     print("4 - SHOW STATUS")
     print("5 - HELP")
     print("6 - EXIT")
@@ -252,7 +282,7 @@ def main_menu():
         create_report()
     elif (choice == "3"):
         # comment: 
-        erase_month()
+        delete_report()
     elif (choice == "4"):
         # comment: 
         show_status()
@@ -267,28 +297,4 @@ exit()
 
 
 
-##################### TEMP CODE
 
-def combine_charger_consumptions(data, price_per_unit):
-    # Dictionary to hold combined results with consumption totals and costs
-    charger_totals = {}
-
-    # Iterate through each item in the input list
-    for entry in data:
-        # Get charger name and consumption
-        charger_name = entry['ChargerName']
-        consumption = entry['Consumption']
-
-        # If the charger name is already in the dictionary, add to its consumption
-        if charger_name in charger_totals:
-            charger_totals[charger_name]['Consumption'] += consumption
-        else:
-            # Otherwise, initialize it in the dictionary with consumption and cost
-            charger_totals[charger_name] = {'Consumption': consumption, 'Cost': 0}
-
-        # Update cost for the current consumption increment
-        charger_totals[charger_name]['Cost'] = charger_totals[charger_name]['Consumption'] * price_per_unit
-
-    # Create a list of dictionaries from the accumulated totals
-    result_list = [{'ChargerName': name, 'Consumption': details['Consumption'], 'Cost': round(details['Cost'], 2)} for name, details in charger_totals.items()]
-    return result_list
