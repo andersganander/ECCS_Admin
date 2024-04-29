@@ -327,6 +327,7 @@ def main():
         while (not validation.validate_choice(choice)):
             choice = input( "Select option (1-6) \n")
 
+        os.system('clear')
         if (choice == "1"):
             # comment: 
             show_status()
