@@ -3,7 +3,7 @@ import gspread
 from google.oauth2.service_account import Credentials
 import validation
 import common
-from prettytable import PrettyTable
+from prettytable import PrettyTable, ALL
 import datetime
 
 SCOPE = [
@@ -238,12 +238,51 @@ def show_status():
 
     # Create table
     status_table = PrettyTable(data[0]) 
+    status_table.hrules=ALL
 
     for idx in range(1, len(data)):
         # Iterates the rows in the data from the workbook and adds them to the table
         status_table.add_row(data[idx])
     print (status_table)
     input("Press enter to continue")
+# end def
+
+def show_report():
+    """
+    Shows report for the chosen month
+    """
+    print("show report")
+
+    # Prompt user to choose month (ex 1 = january, 2 = february etc)
+    user_month = input("Enter month (1-12) \n")
+
+    # Validate the chosen month
+    while (not validation.validate_month(user_month)):
+        user_month = input("Enter month (1-12) \n")
+
+     # Create report name
+    month_short = datetime.datetime(2023,int(user_month),1).strftime("%b")
+    report_name = f"Report_{month_short}_2023"
+
+
+    # Get the data from the workbook
+    report_to_show = SHEET.worksheet(report_name)
+    data = report_to_show.get_all_values()
+    # print(data)
+    # Sort the data, starting with january, but how? (Add a new column with number 
+    # or is it posible to use a function to convert month name to month number) 
+
+    # Create table
+    status_table = PrettyTable(data[0]) 
+    status_table.hrules=ALL
+
+    for idx in range(1, len(data)):
+        # Iterates the rows in the data from the workbook and adds them to the table
+        status_table.add_row(data[idx])
+    print (status_table)
+    input("Press enter to continue")
+
+    
 # end def
 
 def show_help():
@@ -263,12 +302,14 @@ def show_help():
 def main_menu():
     print("\nMenu ")
     print("----")
-    print("1 - REGISTER PRICE")
+    print("(1 - REGISTER PRICE)")
     print("2 - CREATE REPORT")
     print("3 - DELETE REPORT")
     print("4 - SHOW STATUS")
     print("5 - HELP")
-    print("6 - EXIT")
+    print("6 - SHOW REPORT")
+    print("7 - EXIT")
+
 
     choice = input( "Select option (1-6) \n")
     while (not validation.validate_choice(choice)):
@@ -289,6 +330,9 @@ def main_menu():
     elif (choice == "5"):
         # comment: 
         show_help()
+    elif (choice == "6"):
+        # comment: 
+        show_report()
     # end if
 
 main_menu()
