@@ -30,9 +30,7 @@ def register_price():
     """
     year_overview = SHEET.worksheet('Status_2023')
     
-    os.system('clear')
-    print("register price")
-    print('--------------')
+    print("**** REGISTER PRICE ****\n")
 
     # Prompt user to choose month (ex january or jan)
     user_month = input("Enter month \n")
@@ -73,9 +71,7 @@ def create_report():
     
     consumption = SHEET.worksheet('Consumption_2023')
 
-    os.system('clear')
-    print("Create Report")
-    print('-------------')
+    print("**** CREATE REPORT ****\n")
 
     # Prompt user to choose month (ex 1 = january, 2 = february etc)
     user_month = input("Enter month (1-12) \n")
@@ -93,7 +89,7 @@ def create_report():
     print('Calculate cost...')
     # Code from S O
     records = consumption.get_all_records(value_render_option="UNFORMATTED_VALUE")
-    print(records)
+    #print(records)
     # find all rows for the chosen month
     found_records = []
     for record in records:
@@ -101,13 +97,13 @@ def create_report():
         #print(f"m={m} user_month={user_month}")
         if str(record.get('Month')) == user_month:
             found_records.append(record)
-    print("*********** Found records **************")
-    print(found_records)
-    print(f"Found records antal: {len(found_records)}")
+    #print("*********** Found records **************")
+    #print(found_records)
+    #print(f"Found records antal: {len(found_records)}")
 
     report_list = calculate_cost(found_records, user_price)
-    print('****** report_list ******')
-    print(report_list)
+    #print('****** report_list ******')
+    #print(report_list)
 
     # Create report name
     month_short = datetime.datetime(2023,int(user_month),1).strftime("%b")
@@ -186,7 +182,8 @@ def delete_report():
     """
     Shows dialog where user choose which months data to erase 
     """
-    print("***** ERASE MONTH *****")
+    
+    print("**** DELETE REPORT ****\n")
     
     # Prompt user to choose month (ex 1 = january, 2 = february etc)
     user_month = input("Enter month (1-12) \n")
@@ -224,7 +221,7 @@ def show_status():
     Returns the status for all months
     (month, price, report, date)
     """
-    print("show status")
+    print("**** SHOW REPORT STATUS ****\n")
 
     # Get the data from the workbook 'Status_2023'
     consumption = SHEET.worksheet('Status_2023')
@@ -248,7 +245,7 @@ def show_report():
     """
     Shows report for the chosen month
     """
-    print("show report")
+    print("*** SHOW REPORT ****\n")
 
     # Prompt user to choose month (ex 1 = january, 2 = february etc)
     user_month = input("Enter month (1-12) \n")
@@ -288,7 +285,8 @@ def show_help():
     """
     Shows instructions for how to use the system
     """
-    print("show help")
+    print("**** HELP ****\n")
+    input("Press enter to continue")
     #TODO Print help text
 # end def
 
@@ -318,7 +316,7 @@ def main():
         print("1 - SHOW REPORT STATUS")
         print("2 - CREATE REPORT")
         print("3 - SHOW REPORT")
-        print("4 - DELETE STATUS")
+        print("4 - DELETE REPORT")
         print("5 - HELP")
         print("6 - EXIT")
 
