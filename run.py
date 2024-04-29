@@ -5,6 +5,7 @@ import validation
 import common
 from prettytable import PrettyTable, ALL
 import datetime
+from colorama import Fore, Back, Style, init
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -74,11 +75,7 @@ def create_report():
     print("**** CREATE REPORT ****\n")
 
     # Prompt user to choose month (ex 1 = january, 2 = february etc)
-    user_month = input("Enter month (1-12) \n")
-
-    # Validate the chosen month
-    while (not validation.validate_month(user_month)):
-        user_month = input("Enter month (1-12) \n")
+    user_month = common.choose_month()
 
     # Check if report exists for chosen month
 
@@ -156,9 +153,6 @@ def calculate_cost(data, price):
         # calculate the cost
         cost_records[ch_name]['Cost'] = cost_records[ch_name]['Consumption'] * price 
     
-    print('*********  Calculate cost *************')
-    print(cost_records)
-
     # Create and return list of dictionaries
     result = []
 
@@ -186,11 +180,7 @@ def delete_report():
     print("**** DELETE REPORT ****\n")
     
     # Prompt user to choose month (ex 1 = january, 2 = february etc)
-    user_month = input("Enter month (1-12) \n")
-
-    # Validate the chosen month
-    while (not validation.validate_month(user_month)):
-        user_month = input("Enter month (1-12) \n")
+    user_month = common.choose_month()
 
      # Create report name
     month_short = datetime.datetime(2023,int(user_month),1).strftime("%b")
@@ -241,18 +231,14 @@ def show_status():
     input("Press enter to continue")
 # end def
 
+
 def show_report():
     """
     Shows report for the chosen month
     """
     print("*** SHOW REPORT ****\n")
 
-    # Prompt user to choose month (ex 1 = january, 2 = february etc)
-    user_month = input("Enter month (1-12) \n")
-
-    # Validate the chosen month
-    while (not validation.validate_month(user_month)):
-        user_month = input("Enter month (1-12) \n")
+    user_month = common.choose_month()
 
      # Create report name
     month_short = datetime.datetime(2023,int(user_month),1).strftime("%b")
@@ -261,12 +247,17 @@ def show_report():
 
     # TODO Check if the report exists
 
+    # clear screen
+    os.system('clear')
+
     # Get the data from the workbook
     report_to_show = SHEET.worksheet(report_name)
     data = report_to_show.get_all_values()
     # print(data)
     # Sort the data, starting with january, but how? (Add a new column with number 
     # or is it posible to use a function to convert month name to month number) 
+
+    print(f"Show Report - {report_name}")
 
     # Create table
     status_table = PrettyTable(data[0]) 
@@ -305,25 +296,26 @@ def main():
     """
     # Set variables
     show_menu = True
+    init(autoreset=True)
 
     while show_menu:
          # Clear the terminal screen
         os.system('clear')
 
         # Print the menu
-        print("E. C. C. S.")
-        print("\n**** Main Menu ****\n")
-        print("1 - SHOW REPORT STATUS")
-        print("2 - CREATE REPORT")
-        print("3 - SHOW REPORT")
-        print("4 - DELETE REPORT")
-        print("5 - HELP")
-        print("6 - EXIT")
+        print(Fore.LIGHTBLUE_EX + "E. C. C. S.")
+        print(Fore.LIGHTBLUE_EX + "\n**** Main Menu ****\n")
+        print(Fore.LIGHTGREEN_EX + "1 - SHOW REPORT STATUS")
+        print(Fore.LIGHTGREEN_EX + "2 - CREATE REPORT")
+        print(Fore.LIGHTGREEN_EX + "3 - SHOW REPORT")
+        print(Fore.LIGHTGREEN_EX + "4 - DELETE REPORT")
+        print(Fore.LIGHTGREEN_EX + "5 - HELP")
+        print(Fore.LIGHTRED_EX + "6 - EXIT")
 
         # Prompt the user for input and validate the chosen option
-        choice = input( "Select option (1-6) \n")
+        choice = input( "\nSelect option (1-6) \n")
         while (not validation.validate_choice(choice)):
-            print("Option must be a number between 1 and 6")
+            print(Fore.LIGHTRED_EX + "Option must be a number between 1 and 6")
             choice = input( "Select option (1-6) \n")
 
         os.system('clear')
