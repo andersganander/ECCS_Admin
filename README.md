@@ -117,23 +117,8 @@ Error handling
 - The user 
 
 ## Data Model
-I used principles of **Object-Oriented Programming** throughout this project. The Word-Py game consists of three classes:
 
-- Game
-- WordChecker
-- OxfordDictAPI
-
-The `Game` object is responsible for controlling the flow of the game. It handles things like taking the user input and presenting data back to the user. It contains methods for the general running of the game such as displaying the introduction, displaying user options, taking user guesses, displaying guesses, updating the leader board and displaying the leader board.
-
-The `WordChecker` object is responsible for all actions related to checking the user-provided "guess" input against the generated "answer". This includes validating the input, handling any errors and building the colour-coded response which is returned to the `Game` instance.
-
-The `OxfordDictAPI` object communicates with the [Oxford Dictionaries API](https://developer.oxforddictionaries.com/). This class gets the API credentials from the env.py file and sends a request against this API to ensure the user-provided guess is a valid English word (it exists in the Oxford English Dictionary).
-
-When the game is first run, an initial method is used to retrieve an “answer” word from a text file. This word is then passed as a parameter when creating the `WordChecker` instance. This `WordChecker` instance is then passed as a parameter to the `Game` instance.
-
-The `Game` class then renders the introduction screen and prompts the user for their first guess. User input is passed to `WordChecker` in which it’s validated and then used to return the colour-coded letters to the user via `Game`. `Game` will continue to ask the user for guesses using a while loop until the word has been correctly identified, or the max number of guesses are used.
-
-This modular approach to object definition meant that all of the functionality for running the game, checking the user guess and communicating with the Oxford API were all self-contained within their own classes. This made it easier to develop and also much easier to troubleshoot when things didn't work as initially expected.
+I'm not sure what to write here...
 
 ## Testing
 
@@ -152,23 +137,21 @@ The
 
 ### Python Libraries:
 
-- [random](https://docs.python.org/3/library/random.html?highlight=random#module-random) - `random.choice` is used to select a random word for the game from a text file.
+
 - [os](https://docs.python.org/3/library/os.html?highlight=os#module-os) 
-  - `os.system` is used in order to clear the terminal when beginning a new game.
-  - `os.environ` is used to get Oxford API credentials from environment variables (defined in env.py).
-- [datetime](https://pypi.org/project/DateTime/): used to get today's date for the leaderboard entry.
+  - `os.system` is used in order to clear the terminal 
+- [datetime](https://pypi.org/project/DateTime/): used to get today's date when report is created
 - [gspread](https://pypi.org/project/gspread/): to allow communication with Google Sheets. 
-- [requests](https://pypi.org/project/requests): enables data retrieval from APIs.
-- [google.oauth2.service_account](https://google-auth.readthedocs.io/en/stable/index.html):  used to validate credentials and grant access to google service accounts.
-- [pandas](https://pypi.org/project/pandas/) - used for sorting and displaying leaderboard data in user-friendly format.  
-- [pyfiglet](https://pypi.org/project/pyfiglet/0.7/) - for taking ASCII text and rendering it into ASCII art fonts.
+- [requests](https://pypi.org/project/requests): enables data retrieval from elprisetjustnu.se.
+- [google.oauth2.service_account](https://google-auth.readthedocs.io/en/stable/index.html):  
+- [pyfiglet](https://pypi.org/project/pyfiglet/0.7/) - Not sure if i'll use this...
 - [colorama](https://pypi.org/project/colorama/) - for adding colour to terminal text.
 
 ### Programs Used
 
 - [GitHub](https://github.com/) - used for version control.
 - [Heroku](https://dashboard.heroku.com/apps) -  used to deploy the live project.
-- [Lucidchart](https://lucid.app/documents#/dashboard) -  used to create the game flowchart
+- [Draw IO]
 - [PEP8 Online](http://pep8online.com/) - used to validate all the Python code
 - [Grammerly](https://app.grammarly.com/) - used to proof read the README.md
 
@@ -188,7 +171,7 @@ Github issues
 
 ## Deployment
 
-The site was deployed via [Heroku](https://dashboard.heroku.com/apps), and the live link can be found here: [Word-Py](https://word-py.herokuapp.com/)
+The site was deployed via [Heroku](https://dashboard.heroku.com/apps), and the live link can be found here: 
 
 Before deploying to Heroku pip3 freeze > requirements.txt was used to add all the dependencies required to the requirements.txt file. This is required for the game to run on Heroku.
 
@@ -218,17 +201,7 @@ The site is now live and operational.
 ### Resources Used
 - [W3Schools](https://www.w3schools.com/)  
 - [Stack Overflow](https://stackoverflow.com/)
-- [5 Letter Words List](https://7esl.com/5-letter-words/) - The list of five-letter words used in the game was taken from this site.
-- [Count occurrences of a character in a string](https://stackoverflow.com/questions/1155617/count-the-number-of-occurrences-of-a-character-in-a-string) - I read about the Collections Counter method in this post.
-- [How to set up environment variables in GitPod](https://code-institute-room.slack.com/archives/CP07TN38Q/p1576743956008500) - This post from anna_ci in the Code Institute slack channel was very informative and enabled me to set up my environment variables correctly for my API key. 
-- [ASCII Art](https://www.asciiart.eu/art-and-design/borders) - I used this ASCII art for the border around the instructions.
-- [How to get current date and time in Python](https://www.programiz.com/python-programming/datetime/current-datetime) - I used this article to learn about the strftime() method when getting the date for my leaderboard.
-- [Pandas Sort: Your Guide to Sorting Data in Python](https://realpython.com/pandas-sort-python/) - I used this article to learn how to sort the leaderboard data for the table.
-- [Center align column headers of a Pandas DataFrame](https://www.tutorialspoint.com/python-center-align-column-headers-of-a-pandas-dataframe) - I used this article when formating the leaderboard table.
-- [Oxford Dictionary API Docs](https://developer.oxforddictionaries.com/documentation/getting_started) - This documentation came in useful when implementing the Oxford Dictionary API.
-- I followed the steps in the Code Institute Python walkthrough project - Love Sandwiches when setting up my Google Sheets API.
+
 
 
 ## Acknowledgments
-
-The Code Institute slack community for their quick responses and very helpful feedback!
