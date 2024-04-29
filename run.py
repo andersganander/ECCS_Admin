@@ -24,9 +24,6 @@ SHEET = GSPREAD_CLIENT.open('Charger_consumption_2023')
 # \n is needed for getting it to work in Heroku
 # data_str = input("Please enter:\n")
 
-def main():
-    pass
-
 def register_price():
     """
     Shows dialog and recieve users input (month and price)
@@ -265,6 +262,8 @@ def show_report():
     report_name = f"Report_{month_short}_2023"
 
 
+    # TODO Check if the report exists
+
     # Get the data from the workbook
     report_to_show = SHEET.worksheet(report_name)
     data = report_to_show.get_all_values()
@@ -290,6 +289,7 @@ def show_help():
     Shows instructions for how to use the system
     """
     print("show help")
+    #TODO Print help text
 # end def
 
 #def exit():
@@ -299,43 +299,58 @@ def show_help():
     pass
 # end def
 
-def main_menu():
-    print("\nMenu ")
-    print("----")
-    print("(1 - REGISTER PRICE)")
-    print("2 - CREATE REPORT")
-    print("3 - DELETE REPORT")
-    print("4 - SHOW STATUS")
-    print("5 - HELP")
-    print("6 - SHOW REPORT")
-    print("7 - EXIT")
+def main():
+    """ 
+    The main function. Shows the menu and awaits user input
+    User input is validated and then the chosen option is invoked
+    Application exits when the user choose 6 - Exit
+    """
+    # Set variables
+    show_menu = True
 
+    while show_menu:
+         # Clear the terminal screen
+        os.system('clear')
 
-    choice = input( "Select option (1-6) \n")
-    while (not validation.validate_choice(choice)):
+        # Print the menu
+        print("E. C. C. S.")
+        print("\n**** Main Menu ****\n")
+        print("1 - SHOW REPORT STATUS")
+        print("2 - CREATE REPORT")
+        print("3 - SHOW REPORT")
+        print("4 - DELETE STATUS")
+        print("5 - HELP")
+        print("6 - EXIT")
+
+        # Prompt the user for input and validate the chosen option
         choice = input( "Select option (1-6) \n")
+        while (not validation.validate_choice(choice)):
+            choice = input( "Select option (1-6) \n")
 
-    if (choice == "1"):
-        # comment: 
-        register_price()
-    elif (choice == "2"):
-        # comment: 
-        create_report()
-    elif (choice == "3"):
-        # comment: 
-        delete_report()
-    elif (choice == "4"):
-        # comment: 
-        show_status()
-    elif (choice == "5"):
-        # comment: 
-        show_help()
-    elif (choice == "6"):
-        # comment: 
-        show_report()
-    # end if
+        if (choice == "1"):
+            # comment: 
+            show_status()
+        elif (choice == "2"):
+            # comment: 
+            create_report()
+        elif (choice == "3"):
+            # comment: 
+            show_report()
+        elif (choice == "4"):
+            # comment: 
+            delete_report()
+        elif (choice == "5"):
+            # comment: 
+            show_help()
+        elif (choice == "6"):
+            # comment: 
+            print("Exiting E.C.C.S")
+            show_menu = False
+        # end if
+    # end while
+# end def
 
-main_menu()
+main()
 exit()
 
 
