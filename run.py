@@ -323,6 +323,7 @@ def main():
         # Prompt the user for input and validate the chosen option
         choice = input( "Select option (1-6) \n")
         while (not validation.validate_choice(choice)):
+            print("Option must be a number between 1 and 6")
             choice = input( "Select option (1-6) \n")
 
         os.system('clear')
