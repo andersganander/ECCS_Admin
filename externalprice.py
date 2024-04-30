@@ -73,4 +73,4 @@ def get_external_price(month):
         print(str(e))
 
 
-# print(get_external_price(10))
+#print(get_external_price(12))
