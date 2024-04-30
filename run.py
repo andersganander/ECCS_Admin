@@ -77,7 +77,16 @@ def create_report():
     # Prompt user to choose month (ex 1 = january, 2 = february etc)
     user_month = common.choose_month()
 
+    # Create report name
+    month_short = datetime.datetime(2023,int(user_month),1).strftime("%b")
+    report_name = f"Report_{month_short}_2023"
+
     # Check if report exists for chosen month
+    if common.report_exists(SHEET, report_name):
+        print(Fore.LIGHTRED_EX + f"{report_name} already exists.")
+        input("Press enter to continue\n")
+        return
+
 
     # Check that price exists (UPDATE FLOWCHART)
     user_price = 0.5
@@ -101,10 +110,6 @@ def create_report():
     report_list = calculate_cost(found_records, user_price)
     #print('****** report_list ******')
     #print(report_list)
-
-    # Create report name
-    month_short = datetime.datetime(2023,int(user_month),1).strftime("%b")
-    report_name = f"Report_{month_short}_2023"
 
     # Create new worksheet
     report_header = ['ChargerName','TotalConsumption','TotalCost']
@@ -187,6 +192,10 @@ def delete_report():
     report_name = f"Report_{month_short}_2023"
 
     # Check if report exists
+    if not common.report_exists(SHEET, report_name):
+        print(Fore.LIGHTRED_EX + f"{report_name} can not be found.")
+        input("Press enter to continue\n")
+        return
 
     # Ask user if they want to proceed
 
@@ -245,7 +254,11 @@ def show_report():
     report_name = f"Report_{month_short}_2023"
 
 
-    # TODO Check if the report exists
+    # Check if the report exists
+    if not common.report_exists(SHEET, report_name):
+        print(Fore.LIGHTRED_EX + f"{report_name} can not be found.")
+        input("Press enter to continue\n")
+        return
 
     # clear screen
     os.system('clear')

@@ -1,5 +1,6 @@
 import validation
 from colorama import Fore, Back, Style, init
+import gspread
 
 # common functions
 # TODO Make this into a class
@@ -52,3 +53,15 @@ def choose_month():
     return user_month
 
 # end def
+
+def report_exists(SHEET, name):
+    """ 
+
+    """
+
+    status = SHEET.worksheet('Status_2023')
+    if status.find(name) == None:
+        return False
+    else:
+        return True
+
