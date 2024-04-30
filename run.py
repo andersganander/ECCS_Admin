@@ -17,51 +17,14 @@ SCOPE = [
 # Global constants
 CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
-GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
-SHEET = GSPREAD_CLIENT.open('Charger_consumption_2023')
+CF = common.CommonFunctions()
 
+try:
+    GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
+    SHEET = GSPREAD_CLIENT.open('Charger_consumption_2023')
+except Exception as ge:
+    print(Fore.LIGHTRED_EX + str(ge))
 
-#print(data)
-
-# \n is needed for getting it to work in Heroku
-# data_str = input("Please enter:\n")
-
-def register_price():
-    """
-    Shows dialog and recieve users input (month and price)
-    """
-    year_overview = SHEET.worksheet('Status_2023')
-    
-    print("**** REGISTER PRICE ****\n")
-
-    # Prompt user to choose month (ex january or jan)
-    user_month = input("Enter month \n")
-
-    # Validate month
-
-
-    # Check if reports exists for chosen month
-    # helper function (will be used from other menu options as well)
-
-    # Check if price exists for chosen month
-
-    # Prompt the user to enter price
-    user_price = input("Enter price \n")
-
-    # Check if the entered price is a positive float
-
-    # Check if the entered price is reasonable
-
-    # Update the price in the sheet
-    cell = year_overview.find(user_month)
-    print(f"Found {user_month} in row:{cell.row} col:{cell.col}")
-    year_overview.update_cell(cell.row,2,user_price)
-
-    print(f"Price updated successfully: {user_price}")
-    input("Press enter to continue")
-
-
-# end def
 
 def create_report():
     """
@@ -77,7 +40,7 @@ def create_report():
     print(Fore.LIGHTMAGENTA_EX + "**** CREATE REPORT ****\n")
 
     # Prompt user to choose month (ex 1 = january, 2 = february etc)
-    user_month = common.choose_month()
+    user_month = CF.choose_month()
 
     # Create report name
     month_short = datetime.datetime(2023,int(user_month),1).strftime("%b")
@@ -85,7 +48,7 @@ def create_report():
     report_name = f"Report_{month_short}_2023"
 
     # Check if report exists for chosen month
-    if common.report_exists(SHEET, report_name):
+    if CF.report_exists(SHEET, report_name):
         print(Fore.LIGHTRED_EX + f"{report_name} already exists.")
         input("Press enter to continue\n")
         return
@@ -197,14 +160,14 @@ def delete_report():
     print("**** DELETE REPORT ****\n")
     
     # Prompt user to choose month (ex 1 = january, 2 = february etc)
-    user_month = common.choose_month()
+    user_month = CF.choose_month()
 
      # Create report name
     month_short = datetime.datetime(2023,int(user_month),1).strftime("%b")
     report_name = f"Report_{month_short}_2023"
 
     # Check if report exists
-    if not common.report_exists(SHEET, report_name):
+    if not CF.report_exists(SHEET, report_name):
         print(Fore.LIGHTRED_EX + f"{report_name} can not be found.")
         input("Press enter to continue\n")
         return
@@ -259,7 +222,7 @@ def show_report():
     """
     print("*** SHOW REPORT ****\n")
 
-    user_month = common.choose_month()
+    user_month = CF.choose_month()
 
      # Create report name
     month_short = datetime.datetime(2023,int(user_month),1).strftime("%b")
@@ -267,7 +230,7 @@ def show_report():
 
 
     # Check if the report exists
-    if not common.report_exists(SHEET, report_name):
+    if not CF.report_exists(SHEET, report_name):
         print(Fore.LIGHTRED_EX + f"{report_name} can not be found.")
         input("Press enter to continue\n")
         return
