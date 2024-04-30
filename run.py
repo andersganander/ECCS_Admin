@@ -343,27 +343,33 @@ def main():
             print(Fore.LIGHTRED_EX + "Option must be a number between 1 and 6")
             choice = input( "Select option (1-6) \n")
 
-        os.system('clear')
-        if (choice == "1"):
-            # comment: 
-            show_status()
-        elif (choice == "2"):
-            # comment: 
-            create_report()
-        elif (choice == "3"):
-            # comment: 
-            show_report()
-        elif (choice == "4"):
-            # comment: 
-            delete_report()
-        elif (choice == "5"):
-            # comment: 
-            show_help()
-        elif (choice == "6"):
-            # comment: 
-            print("Exiting E.C.C.S")
-            show_menu = False
-        # end if
+        try:
+            os.system('clear')
+            if (choice == "1"):
+                # comment: 
+                show_status()
+            elif (choice == "2"):
+                # comment: 
+                create_report()
+            elif (choice == "3"):
+                # comment: 
+                show_report()
+            elif (choice == "4"):
+                # comment: 
+                delete_report()
+            elif (choice == "5"):
+                # comment: 
+                show_help()
+            elif (choice == "6"):
+                # comment: 
+                print("Exiting E.C.C.S")
+                show_menu = False
+            # end if
+        except Exception as e:
+            print(Fore.LIGHTRED_EX + "Something unexpected happened.")
+            print(str(e))
+            input("Press enter to continue\n")
+
     # end while
 # end def
 
