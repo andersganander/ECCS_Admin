@@ -3,6 +3,7 @@ import gspread
 from google.oauth2.service_account import Credentials
 import validation
 import common
+import externalprice
 from prettytable import PrettyTable, ALL
 import datetime
 from colorama import Fore, Back, Style, init
@@ -89,7 +90,9 @@ def create_report():
 
 
     # Check that price exists (UPDATE FLOWCHART)
-    user_price = 0.5
+    print(f"Getting the price for {month_short}...")
+    user_price = externalprice.get_external_price(int(user_month))
+    print(f"Price: {user_price}")
     
     # Calculate cost for each charger
     print('Calculate cost...')
