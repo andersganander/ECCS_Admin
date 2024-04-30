@@ -5,6 +5,7 @@ import validation
 import common
 import externalprice
 from prettytable import PrettyTable, ALL
+from prettytable.colortable import ColorTable, Themes
 import datetime
 from colorama import Fore, Back, Style, init
 
@@ -195,7 +196,7 @@ def show_status():
     Returns the status for all months
     (month, price, report, date)
     """
-    print("**** SHOW REPORT STATUS ****\n")
+    print(Fore.LIGHTMAGENTA_EX + "**** SHOW REPORT STATUS ****\n")
 
     # Get the data from the workbook 'Status_2023'
     consumption = SHEET.worksheet('Status_2023')
@@ -205,14 +206,18 @@ def show_status():
     # or is it posible to use a function to convert month name to month number) 
 
     # Create table
-    status_table = PrettyTable(data[0]) 
+    status_table = PrettyTable()
+    status_table = ColorTable(theme=Themes.OCEAN)
+    status_table.field_names = ["Month", "Price", "Report", "Date"]
+    #status_table.add_rows(data[0]) 
+   
     status_table.hrules=ALL
 
     for idx in range(1, len(data)):
         # Iterates the rows in the data from the workbook and adds them to the table
         status_table.add_row(data[idx])
     print (status_table)
-    input("Press enter to continue")
+    input("\nPress enter to continue")
 # end def
 
 
@@ -220,7 +225,7 @@ def show_report():
     """
     Shows report for the chosen month
     """
-    print("*** SHOW REPORT ****\n")
+    print(Fore.LIGHTMAGENTA_EX + "**** SHOW REPORT ****\n")
 
     user_month = CF.choose_month()
 
@@ -245,17 +250,20 @@ def show_report():
     # Sort the data, starting with january, but how? (Add a new column with number 
     # or is it posible to use a function to convert month name to month number) 
 
-    print(f"Show Report - {report_name}")
+    print(Fore.LIGHTMAGENTA_EX + f"SHOW REPORT - {report_name}\n")
 
     # Create table
-    status_table = PrettyTable(data[0]) 
+    status_table = PrettyTable()
+    status_table = ColorTable(theme=Themes.OCEAN)
+    status_table.field_names = ["Charger Name", "Total Consumption", "Total Cost"]
+    #status_table = PrettyTable(data[0]) 
     status_table.hrules=ALL
 
     for idx in range(1, len(data)):
         # Iterates the rows in the data from the workbook and adds them to the table
         status_table.add_row(data[idx])
     print (status_table)
-    input("Press enter to continue")
+    input("\nPress enter to continue")
 
     
 # end def
@@ -291,8 +299,8 @@ def main():
         os.system('clear')
 
         # Print the menu
-        print(Fore.LIGHTBLUE_EX + "E. C. C. S.")
-        print(Fore.LIGHTBLUE_EX + "\n**** Main Menu ****\n")
+        print(Fore.LIGHTBLUE_EX + "E.     C.     C.     S.")
+        print(Fore.LIGHTBLUE_EX + "\n***** MAIN  MENU *****\n")
         print(Fore.LIGHTGREEN_EX + "1 - SHOW REPORT STATUS")
         print(Fore.LIGHTGREEN_EX + "2 - CREATE REPORT")
         print(Fore.LIGHTGREEN_EX + "3 - SHOW REPORT")
