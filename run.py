@@ -72,14 +72,16 @@ def create_report():
     """
     
     consumption = SHEET.worksheet('Consumption_2023')
+    DEFAULT_PRICE = 0.50
 
-    print("**** CREATE REPORT ****\n")
+    print(Fore.LIGHTMAGENTA_EX + "**** CREATE REPORT ****\n")
 
     # Prompt user to choose month (ex 1 = january, 2 = february etc)
     user_month = common.choose_month()
 
     # Create report name
     month_short = datetime.datetime(2023,int(user_month),1).strftime("%b")
+    month_long = datetime.datetime(2023,int(user_month),1).strftime("%B")
     report_name = f"Report_{month_short}_2023"
 
     # Check if report exists for chosen month
@@ -90,12 +92,22 @@ def create_report():
 
 
     # Check that price exists (UPDATE FLOWCHART)
-    print(f"Getting the price for {month_short}...")
-    user_price = externalprice.get_external_price(int(user_month))
-    print(f"Price: {user_price}")
+    print(Fore.LIGHTGREEN_EX + f"Getting the price for {month_long}...")
+
+    try:
+        user_price = externalprice.get_avgprice_for_month(int(user_month))    
+        print(Fore.LIGHTGREEN_EX + f"Found price for {month_long}: {user_price} SEK")
+    except Exception as e :
+        print(Fore.LIGHTRED_EX + "Something went wrong when communicating with external api")
+        print(Fore.LIGHTRED_EX + str(e))
+        print(Fore.LIGHTGREEN_EX + f"Using default price: {DEFAULT_PRICE} SEK")
+        user_price = DEFAULT_PRICE
+
+    #user_price = externalprice.get_external_price(int(user_month))
+    
     
     # Calculate cost for each charger
-    print('Calculate cost...')
+    print(Fore.LIGHTGREEN_EX + 'Calculate cost per charger...')
     # Code from S O
     records = consumption.get_all_records(value_render_option="UNFORMATTED_VALUE")
     #print(records)
@@ -106,15 +118,11 @@ def create_report():
         #print(f"m={m} user_month={user_month}")
         if str(record.get('Month')) == user_month:
             found_records.append(record)
-    #print("*********** Found records **************")
-    #print(found_records)
-    #print(f"Found records antal: {len(found_records)}")
 
     report_list = calculate_cost(found_records, user_price)
-    #print('****** report_list ******')
-    #print(report_list)
 
     # Create new worksheet
+    print(Fore.LIGHTGREEN_EX + f"Creating report {report_name}...")
     report_header = ['ChargerName','TotalConsumption','TotalCost']
     report = SHEET.add_worksheet(report_name, 100, 20)
     report.append_row(report_header)
@@ -126,18 +134,19 @@ def create_report():
     report.set_basic_filter(1, 1, len(report_list)+1, 3)
 
     # Update status worksheet ()
-    month_long = datetime.datetime(2023,int(user_month),1).strftime("%B")
+    #month_long = datetime.datetime(2023,int(user_month),1).strftime("%B")
+    
+    print(Fore.LIGHTGREEN_EX + f"Updating report status...")
     d = datetime.datetime.now()
     date_str = d.strftime("%x")
-    print(date_str)
-    print(month_long)
+
     status = SHEET.worksheet('Status_2023')
     cell = status.find(month_long)
-    print(f"Found {month_long} in row:{cell.row} col:{cell.col}")
+    #print(f"Found {month_long} in row:{cell.row} col:{cell.col}")
     status.update_cell(cell.row,2,user_price)
     status.update_cell(cell.row,3,report_name)
     status.update_cell(cell.row,4,date_str)
-
+    print(Fore.LIGHTGREEN_EX + f"Status updated.")
     input("Press enter to continue")
 # end def
 

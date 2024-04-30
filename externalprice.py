@@ -49,7 +49,7 @@ def get_avgprice_for_month(month):
     nr_of_days = calendar.monthrange(2023,month)[1]
 
     # add a zero at the beginning of the monthnumber if needed
-    zero = '0' if month < 9 else ''
+    zero = '0' if month <= 9 else ''
     usermonth = f"{zero}{month}"
     
     # iterate number of days in the month
@@ -65,12 +65,12 @@ def get_external_price(month):
     """ 
 
     """
-    print(month)
+    #print(month)
     try:
         return get_avgprice_for_month(month)    
     except Exception as e :
         print("Something went wrong when communicating with external api")
         print(str(e))
 
-
-#print(get_external_price(12))
+# end def
+#print(get_external_price(9))
