@@ -111,7 +111,9 @@ def create_report():
     status.update_cell(cell.row, 3, report_name)
     status.update_cell(cell.row, 4, date_str)
     print(Fore.LIGHTGREEN_EX + f"Status updated.")
-    input("\nPress enter to continue")
+    input("\nPress enter to show report")
+    show_report(user_month)
+
 # end def
 
 
@@ -226,13 +228,16 @@ def show_status():
 # end def
 
 
-def show_report():
+def show_report(month):
     """
     Shows report for the chosen month
     """
     print(Fore.LIGHTMAGENTA_EX + "**** SHOW REPORT ****\n")
 
-    user_month = CF.choose_month()
+    if month == 0:
+        user_month = CF.choose_month()
+    else:
+        user_month = month
 
     # Create report name
     month_short = datetime.datetime(2023, int(user_month), 1).strftime("%b")
@@ -332,7 +337,7 @@ def main():
                 create_report()
             elif (choice == "3"):
                 # comment:
-                show_report()
+                show_report(0)
             elif (choice == "4"):
                 # comment:
                 delete_report()
