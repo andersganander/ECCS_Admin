@@ -31,10 +31,10 @@ def create_report():
     """
     Shows dialog an recieves users input (month)
     Validates input data and creates a report
-    Report is created as a new workbook in the worksheet 
+    Report is created as a new workbook in the worksheet
     and shown to the user as a prettytable-formatted table
     """
-    
+
     consumption = SHEET.worksheet('Consumption_2023')
     DEFAULT_PRICE = 0.50
 
@@ -44,8 +44,8 @@ def create_report():
     user_month = CF.choose_month()
 
     # Create report name
-    month_short = datetime.datetime(2023,int(user_month),1).strftime("%b")
-    month_long = datetime.datetime(2023,int(user_month),1).strftime("%B")
+    month_short = datetime.datetime(2023, int(user_month), 1).strftime("%b")
+    month_long = datetime.datetime(2023, int(user_month), 1).strftime("%B")
     report_name = f"Report_{month_short}_2023"
 
     # Check if report exists for chosen month
@@ -54,7 +54,6 @@ def create_report():
         input("Press enter to continue\n")
         return
 
-
     # Check that price exists (UPDATE FLOWCHART)
     print(Fore.LIGHTGREEN_EX + f"Getting the price for {month_long}...")
 
@@ -62,13 +61,11 @@ def create_report():
         user_price = externalprice.get_avgprice_for_month(int(user_month))    
         print(Fore.LIGHTGREEN_EX + f"Found price for {month_long}: {user_price} SEK")
     except Exception as e :
-        print(Fore.LIGHTRED_EX + "Something went wrong when communicating with external api")
+        print(Fore.LIGHTRED_EX + "Something went wrong when communicating with\
+             external api")
         print(Fore.LIGHTRED_EX + str(e))
         print(Fore.LIGHTGREEN_EX + f"Using default price: {DEFAULT_PRICE} SEK")
         user_price = DEFAULT_PRICE
-
-    #user_price = externalprice.get_external_price(int(user_month))
-    
     
     # Calculate cost for each charger
     print(Fore.LIGHTGREEN_EX + 'Calculate cost per charger...')
