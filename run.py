@@ -25,7 +25,9 @@ try:
     SHEET = GSPREAD_CLIENT.open('Charger_consumption_2023')
 except Exception as ge:
     print(Fore.LIGHTRED_EX + str(ge))
-
+    print(Fore.LIGHTRED_EX + "A technical error has occurred, please try again later.")
+    input("\nThe application will terminate, press enter...")
+    exit()
 
 def create_report():
     """

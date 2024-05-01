@@ -3,9 +3,9 @@ ECCS (Electricy Cost Calculation System) is a system for managing and calculatin
 
 The system automatically prepares the billing information based on data pulled from the charging stations, eliminating the need for manual adjustments to spreadsheets before sending them to the financial administrator for invoicing. This ensures accuracy and saves time for the cooperative.
 
-The live link can be found here - [ECCS Admin](https://)
+The live link can be found here - [ECCS Admin](https://eccs-admin-e9a21a8f9cef.herokuapp.com/)
 
-![Screenshot](docs/readme_images/???.png)
+![Screenshot](docs/readme_images/ECCS_screen_menu.jpg)
 
 
 ## User Stories
@@ -13,7 +13,7 @@ The live link can be found here - [ECCS Admin](https://)
 - ### As a user I want to:
   - Get an overview of which reports have been created and when
   - Be able to create a report for a specific month
-  - Enter my own electricity price or choose to use a retrieved electricity price
+  - Retrieve the electricity price from an external api
   - Be able to recreate a report if necessary
   - View a report for a specific month
 
@@ -21,9 +21,6 @@ The live link can be found here - [ECCS Admin](https://)
 Through the Charge Amps administration interface, the cooperative's administrator can export reports on the electricity consumption for the various charging stations over a specific period. The report includes details about the charging station's serial number, name, consumption, and type of charging.
 
 ![Exported data](docs/readme_images/ECCS_spreadsheet_1.jpg)
-
-## User experience
-In order to visualise the flow of 
 
 ## Flow charts
 <details>
@@ -71,37 +68,50 @@ In order to visualise the flow of
 
 </details>
 
+## UX
+colors
+page headings
+status messages
+clear screens
+tables
+
+
 ## Features
 
 ### Main menu
-- When the user enters the site 
+When the application starts, the main menu is displayed where the user can 
+choose from six different options.
 
-![Welcome Screen](docs/readme_images/???.png)
+![Main menu Screen](docs/readme_images/ECCS_screen_menu.jpg)
 
-- There is strong data validation 
+When the user selects an option, the input value is validated to ensure that 
+only an integer between 1 and 6 (inclusive) is accepted. If an incorrect value 
+(such as a string) is entered, an error message is displayed and the user is 
+prompted to make a new choice.
 
-![Input Validation](docs/readme_images/???.png)
+![Input Validation](docs/readme_images/ECCS_screen_menu_validation.jpg)
 
-Error handling
+When the application starts, some initializations are made. Among other things, the spreadsheet with the consumption data is read. If an error occurs then (such as the spreadsheet not being available), it is handled. A message is shown, urging the user to try again later since the data could not be loaded. 
 
+When the user has made their choice in the menu and the respective function is called, all general errors are handled with try-except in main. Certain specific errors are handled in the called function.
 
-### Register price
-- If the u
-- Elpris api
-- input validation
-![User Menu](docs/readme_images/instructions.png)
+### Show report status
+The purpose of the report status page is to give the user an overview of which reports have been created and the price used. When a report is created, the name of the report and the date it was created are also saved.
+
+![Show report status](docs/readme_images/ECCS_report_status.jpg)
+*(Image from the terminal in gitpod (vscode))
 
 ### Create report
 - The user is i
 
 ![Play Game](docs/readme_images/play_game.png)
 
-### Erase month
+### Show report
 - The following
 
 ![Guess Validation](docs/readme_images/???.png)
 
-### Show status
+### Delete report
 - The 
 
 ### Help
