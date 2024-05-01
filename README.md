@@ -160,6 +160,20 @@ I'm not sure what to write here...
 
 ## Testing
 
+### Manual testing
+
+<details>
+<summary>Click here to see the test cases and the results for manual testing</summary>
+
+| __Test case__ | __Action__ | __Expected outcome__ | __Pass?__ | __Comments__ |
+| ------------- | -----------| -------------------- | :-------: | ------------ |
+| Program start | n/a | Main menu with six options is shown | Y | - |
+| Show Report Status | From the Menu, Select option 1 - Show Report Status | Show Report Page is shown | Y | - |
+|  |  | A table is shown with a row for each month | Y | Compare the table with the worksheet 'Status_2023' |
+
+
+</details>
+
 ### PEP8 Testing
 The python files have all been passed through [PEP8 Online](http://pep8online.com/). All python files were checked with no errors reported. See screen show below:
 
@@ -182,8 +196,8 @@ The
 - [gspread](https://pypi.org/project/gspread/): to allow communication with Google Sheets. 
 - [requests](https://pypi.org/project/requests): enables data retrieval from elprisetjustnu.se.
 - [google.oauth2.service_account](https://google-auth.readthedocs.io/en/stable/index.html):  
-- [pyfiglet](https://pypi.org/project/pyfiglet/0.7/) - Not sure if i'll use this...
 - [colorama](https://pypi.org/project/colorama/) - for adding colour to terminal text.
+- prettytable
 
 ### Programs Used
 
