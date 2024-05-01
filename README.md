@@ -31,39 +31,43 @@ In order to visualise the flow of
 
 ### Main menu:
 
-![Flow chart main menu](docs/readme_images/ECCS_flowchart_1.jpg)
+![Flow chart main menu](docs/readme_images/ECCS_flowchart_menu.jpg)
 
 </details>
-<details>
-<summary>Flow chart for Create Report</summary>
 
-### Create report:
-
-![Flow chart Cretate report](docs/readme_images/ECCS_flowchart_2.png)
-
-</details>
-<details>
-<summary>Flow chart for Delete Report</summary>
-
-### Delete report:
-
-![Flow chart Delete report](docs/readme_images/???.jpg)
-
-</details>
 <details>
 <summary>Flow chart for Show Status</summary>
 
 ### Show status:
 
-![Flow chart Show status](docs/readme_images/???.jpg)
+![Flow chart Show status](docs/readme_images/ECCS_flowchart_status.jpg)
 
 </details>
+
+<details>
+<summary>Flow chart for Create Report</summary>
+
+### Create report:
+
+![Flow chart Cretate report](docs/readme_images/ECCS_flowchart_create_report.jpg)
+
+</details>
+
 <details>
 <summary>Flow chart for Show Report</summary>
 
 ### Show report:
 
-![Flow chart Show report](docs/readme_images/???.jpg)
+![Flow chart Show report](docs/readme_images/ECCS_flowchart_show_report.jpg)
+
+</details>
+
+<details>
+<summary>Flow chart for Delete Report</summary>
+
+### Delete report:
+
+![Flow chart Delete report](docs/readme_images/ECCS_flowchart_delete.jpg)
 
 </details>
 

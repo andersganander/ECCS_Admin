@@ -54,7 +54,7 @@ def create_report():
         input("Press enter to continue\n")
         return
 
-    # Check that price exists (UPDATE FLOWCHART)
+    # Fetch price from external api
     print(Fore.LIGHTGREEN_EX + f"Getting the price for {month_long}...\n")
 
     try:
