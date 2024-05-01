@@ -114,6 +114,7 @@ def create_report():
     status.update_cell(cell.row, 4, date_str)
     print(Fore.LIGHTGREEN_EX + f"Status updated.")
     input("\nPress enter to show report")
+    os.system('clear')
     show_report(user_month)
 
 # end def
