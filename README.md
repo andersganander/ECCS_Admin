@@ -5,12 +5,12 @@ The system automatically prepares the billing information based on data pulled f
 
 The live link can be found here - [ECCS Admin](https://eccs-admin-e9a21a8f9cef.herokuapp.com/)
 
-![Screenshot](docs/readme_images/ECCS_screen_menu.jpg)
+<img src="docs/readme_images/ECCS_screen_menu.jpg"  width="300">
 
 
 ## User Stories
 
-- ### As a user I want to:
+### As a user I want to:
   - Get an overview of which reports have been created and when
   - Be able to create a report for a specific month
   - Retrieve the electricity price from an external api
@@ -22,7 +22,12 @@ Through the Charge Amps administration interface, the cooperative's administrato
 
 ![Exported data](docs/readme_images/ECCS_spreadsheet_1.jpg)
 
+MER OM ÖVRIGA FLIKAR (status och report) - bild på flikarna
+
 ## Flow charts
+
+LÄGG IN FLOWCHARTs UNDER FEATURES ISTÄLLET
+
 <details>
 <summary>Flow chart for main menu</summary>
 
@@ -95,16 +100,27 @@ When the application starts, some initializations are made. Among other things, 
 
 When the user has made their choice in the menu and the respective function is called, all general errors are handled with try-except in main. Certain specific errors are handled in the called function.
 
+<details>
+<summary>Flow chart for main menu</summary>
+
+### Main menu:
+
+![Flow chart main menu](docs/readme_images/ECCS_flowchart_menu.jpg)
+
+</details>
+
 ### Show report status
 The purpose of the report status page is to give the user an overview of which reports have been created and the price used. When a report is created, the name of the report and the date it was created are also saved.
 
 ![Show report status](docs/readme_images/ECCS_report_status.jpg)
-*(Image from the terminal in gitpod (vscode))
+*(Image from the terminal in gitpod (vscode))*
 
 ### Create report
-- The user is i
+When the user selects the option 'Create Report' from the menu, they are prompted to specify for which month the report should apply. After the user enters a valid month number, the electricity price for that particular month is fetched from https://www.elprisetjustnu.se/elpris-api. Once the average price is calculated, the cost for each household is determined using the consumption data (from the consumption worksheet) and the calculated average price. Then, the report is created and added as its own worksheet in the spreadsheet. Thereafter, the status table is updated with information about the electricity price used, the name of the report, and the date the report was created.
 
-![Play Game](docs/readme_images/play_game.png)
+![Create Report](docs/readme_images/play_game.png)
+
+
 
 ### Show report
 - The following
@@ -128,7 +144,15 @@ The purpose of the report status page is to give the user an overview of which r
 
 
 ### Future Features
-- The user 
+Log all activities
+Possibility to send report to accountant
+Only possible to delete report until report has been sent
+Adjustments to make it work for 2024
+Config file
+colors
+Error messages
+etc
+
 
 ## Data Model
 
@@ -167,7 +191,6 @@ The
 - [Heroku](https://dashboard.heroku.com/apps) -  used to deploy the live project.
 - [Draw IO]
 - [PEP8 Online](http://pep8online.com/) - used to validate all the Python code
-- [Grammerly](https://app.grammarly.com/) - used to proof read the README.md
 
 
 ## Known Bugs
