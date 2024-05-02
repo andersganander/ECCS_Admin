@@ -25,13 +25,13 @@ try:
     SHEET = GSPREAD_CLIENT.open('Charger_consumption_2023')
 except Exception as ge:
     print(Fore.LIGHTRED_EX + str(ge))
-    print(Fore.LIGHTRED_EX + "A technical error has occurred, please try again later.")
+    print(Fore.LIGHTRED_EX + "An error has occurred, try again later.")
     input("\nThe application will terminate, press enter...")
     exit()
 
+
 def create_report():
-    """
-    Shows dialog an recieves users input (month)
+    """ Shows dialog an recieves users input (month)
     Validates input data and creates a report
     Report is created as a new workbook in the worksheet
     and shown to the user as a prettytable-formatted table
@@ -116,13 +116,19 @@ def create_report():
     input("\nPress enter to show report")
     os.system('clear')
     show_report(user_month)
-
 # end def
 
 
 def calculate_cost(data, price):
-    """
-        #TODO Add docstring
+    """Calculates the cost per charger based on the data and price
+
+    :param data: Rows with info about chargers consumption
+    :type data: list of dicts
+    :param price: The price to use when calculating the cost
+    :type price: float
+
+    :return: New list with the cost per charger
+    :rtype: list of dicts
     """
     cost_records = {}
 
@@ -155,13 +161,11 @@ def calculate_cost(data, price):
         result.append(charger)
 
     return result
-
 # end def
 
 
 def delete_report():
-    """
-    Shows dialog where user choose which months data to erase
+    """ Shows dialog where user choose which months data to erase
     """
 
     print(Fore.LIGHTMAGENTA_EX + "**** DELETE REPORT ****\n")
@@ -200,16 +204,13 @@ def delete_report():
 
 
 def show_status():
-    """
-    Returns the status for all months
-    (month, price, report, date)
+    """ Prints a table with alla status data
     """
     print(Fore.LIGHTMAGENTA_EX + "**** SHOW REPORT STATUS ****\n")
 
     # Get the data from the workbook 'Status_2023'
     consumption = SHEET.worksheet('Status_2023')
     data = consumption.get_all_values()
-    # print(data)
     # Sort the data, starting with january, but how?
     # (Add a new column with number or is it posible to use a function
     # to convert month name to month number)
@@ -232,8 +233,9 @@ def show_status():
 
 
 def show_report(month):
-    """
-    Shows report for the chosen month
+    """ Shows report for the chosen month
+    :param month: The month to use. If 0, user is prompted to choose month
+    :type month: int
     """
     print(Fore.LIGHTMAGENTA_EX + "**** SHOW REPORT ****\n")
 
@@ -258,11 +260,6 @@ def show_report(month):
     # Get the data from the workbook
     report_to_show = SHEET.worksheet(report_name)
     data = report_to_show.get_all_values()
-    # print(data)
-    # Sort the data, starting with january, but how?
-    # (Add a new column with number or is it possible to use a function
-    # to convert month name to month number)
-
     print(Fore.LIGHTMAGENTA_EX + f"SHOW REPORT - {report_name}\n")
 
     # Create table
@@ -277,32 +274,23 @@ def show_report(month):
         # Iterates the rows in the data from the workbook and
         # adds them to the table
         status_table.add_row(data[idx])
+
     print(status_table)
     input("\nPress enter to continue")
-
-
 # end def
 
+
 def show_help():
-    """
-    Shows instructions for how to use the system
+    """Shows instructions for how to use the application
     """
     print("**** HELP ****\n")
     input("Press enter to continue")
     # TODO Print help text
 # end def
 
-# def exit():
-    """
-    Exits the application
-    """
-    pass
-# end def
-
 
 def main():
-    """
-    The main function. Shows the menu and awaits user input
+    """The main function. Shows the menu and awaits user input
     User input is validated and then the chosen option is invoked
     Application exits when the user choose 6 - Exit
     """
@@ -356,7 +344,6 @@ def main():
             print(Fore.LIGHTRED_EX + "Something unexpected happened.")
             print(str(e))
             input("Press enter to continue\n")
-
     # end while
 # end def
 
