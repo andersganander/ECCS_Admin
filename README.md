@@ -72,7 +72,6 @@ When the user has made their choice in the menu and the respective function is c
 The purpose of the report status page is to give the user an overview of which reports have been created and the price used. When a report is created, the name of the report and the date it was created are also saved.
 
 <img src="docs/readme_images/ECCS_report_status.jpg"  width="300">
-<BR><I>Image from the terminal in gitpod (vscode)</I>>
 
 <details>
 <summary>Flow chart for Show Status</summary>
@@ -97,7 +96,6 @@ If there is already a report for the selected month, an error message is display
 If the electricity price cannot be retrieved from the external API, a message will be displayed about this and that a default price will be used instead. Reasons for not being able to retrieve the price could be that the site is down or that the site does not respond within the specified timeout period (currently 5 seconds).
 
 <img src="docs/readme_images/ECCS_create_report_mess2.jpg"  width="300">
-<BR><I>Image from the terminal in gitpod (vscode)</I>>
 
 <details>
 <summary>Flow chart for Create Report</summary>
@@ -223,19 +221,6 @@ Click below to see the results of the conducted tests for each test type.
 ### PEP8 Testing
 The python files have all been passed through [CI Python Linter](https://pep8ci.herokuapp.com/#). All python files were checked and the errors have been fixed.
 
-#### run.py ####
-
-
-#### common.py ####
-
-#### validation.py ####
-
-#### externalprice.py ####
-
-
-
-### Unit tests
-The 
 
 ## Libraries and Technologies Used
 

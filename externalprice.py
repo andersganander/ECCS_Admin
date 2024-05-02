@@ -7,9 +7,12 @@ BASEURL = "https://www.elprisetjustnu.se/api/v1/prices/2023/"
 
 
 def get_avgprice_for_date(userdate):
-    """
-    Fetch energy prices for the userdate from https://www.elprisetjustnu.se
-    Returns the average price
+    """ Fetch energy prices from https://www.elprisetjustnu.se
+    :param: userdate: Date (mmdd) to get average price for
+    :type: userdate: str
+
+    :return: the average price for the date
+    :rtype: float
     """
 
     url = BASEURL + userdate+"_SE3.json"
@@ -37,9 +40,12 @@ def get_avgprice_for_date(userdate):
 
 
 def get_avgprice_for_month(month):
-    """
-    Fetch the energy prices for all days in the month
-    Returns the average price
+    """ Fetch the energy prices for all days in the month
+    :param month: The month to retrieve average price for
+    :type month: int
+
+    :return: the average price for the date
+    :rtype: float
     """
     avg_month_price = 0
     month_total = 0
@@ -61,14 +67,16 @@ def get_avgprice_for_month(month):
 
 
 def get_external_price(month):
-    """
+    """ Wrapper for get_avgprice_for_month to catch exception
+    :param month: The month to retrieve average price for
+    :type month: int
 
+    :return: the average price for the date
+    :rtype: float
     """
     try:
         return get_avgprice_for_month(month)
     except Exception as e:
         print("Something went wrong when communicating with external api")
         print(str(e))
-
 # end def
-# print(get_external_price(9))
