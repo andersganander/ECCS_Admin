@@ -218,6 +218,8 @@ Click below to see the results of the conducted tests for each test type.
 
 </details>
 
+<details>
+
 <summary>Exception handling tests</summary>
 
 ![FunctionalException handling tests](docs/readme_images/ECCS_tests_exception.jpg)
