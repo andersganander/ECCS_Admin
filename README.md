@@ -113,10 +113,10 @@ When the user has made their choice in the menu and the respective function is c
 The purpose of the report status page is to give the user an overview of which reports have been created and the price used. When a report is created, the name of the report and the date it was created are also saved.
 
 <img src="docs/readme_images/ECCS_report_status.jpg"  width="300">
-*(Image from the terminal in gitpod (vscode))*
+<BR><I>Image from the terminal in gitpod (vscode)</I>>
 
 ### Create report
-When the user selects the option 'Create Report' from the menu, they are prompted to specify for which month the report should apply. After the user enters a valid month number, the electricity price for that particular month is fetched from https://www.elprisetjustnu.se/elpris-api. Once the average price is calculated, the cost for each household is determined using the consumption data (from the consumption worksheet) and the calculated average price. Then, the report is created and added as its own worksheet in the spreadsheet. Thereafter, the status table is updated with information about the electricity price used, the name of the report, and the date the report was created.
+When the user selects the option 'Create Report' from the menu, they are prompted to choose month. After the user enters a valid month number, the electricity price for that particular month is fetched from https://www.elprisetjustnu.se/elpris-api. Once the average price is calculated, the cost for each household is determined using the consumption data (from the consumption worksheet) and the calculated average price. Then, the report is created and added as its own worksheet in the spreadsheet. Thereafter, the status table is updated with information about the electricity price used, the name of the report, and the date the report was created.
 
 <img src="docs/readme_images/ECCS_create_report.jpg"  width="300">
 
@@ -129,16 +129,19 @@ If there is already a report for the selected month, an error message is display
 If the electricity price cannot be retrieved from the external API, a message will be displayed about this and that a default price will be used instead. Reasons for not being able to retrieve the price could be that the site is down or that the site does not respond within the specified timeout period (currently 5 seconds).
 
 <img src="docs/readme_images/ECCS_create_report_mess2.jpg"  width="300">
-*(Image from the terminal in gitpod (vscode))*
+<BR><I>Image from the terminal in gitpod (vscode)</I>>
 
 
 ### Show report
-- The following
+When the user has enter a valid month number the report for the chosen month is shown in a table. The data is retrieved for the report worksheet in the spreadsheet. 
 
-![Guess Validation](docs/readme_images/???.png)
+<img src="docs/readme_images/ECCS_show_report.jpg"  width="300">
+
+If the user selects a month that does not have a report, an error message is displayed.
+
 
 ### Delete report
-When the user selects the option 'Create Report' from the menu, they are prompted to specify for which month the report should apply. After the user enters a valid month number, a status message is displayed about which report has been removed. Then, status messages about the update of the status are displayed.
+When the user selects the option 'Create Report' from the menu, they are prompted to choose month the report should cover. After the user enters a valid month number, a status message is displayed about which report has been removed. Then, status messages about the update of the status are displayed.
 
 <img src="docs/readme_images/ECCS_delete_report.jpg"  width="300">
 
@@ -147,19 +150,17 @@ If the user selects a month that does not have a report, an error message is dis
 <img src="docs/readme_images/ECCS_delete_report_message.jpg"  width="300">
 
 ### Help
-- Once 
+When the user selects Help from the menu, a page with some simple instructions is displayed.
 
-![Guess Feedback 1](docs/readme_images/???.png)
+<img src="docs/readme_images/???.jpg"  width="300">
 
 
 ### Exit
-- If the player use
-
-![You Lose](docs/readme_images/???.png)
+Exits the application.
 
 
 
-### Future Features
+### Future impriovements
 Log all activities
 Possibility to send report to accountant
 Only possible to delete report until report has been sent
@@ -177,40 +178,64 @@ I'm not sure what to write here...
 ## Testing
 
 ### Manual testing
+Four different types of tests have been performed:
+- Functional tests
+  - To test that the application works as intended when input is the expected.
+- Validation tests
+  - To test that the application can handle various types of incorrectly entered values that could cause the application to crash. Unit tests have been used for these tests.
+- Manual validation tests
+  - To test that the application can handle when the user tries to delete a report that does not exist or create a report that already exists.
+- Exception handling tests
+  - The handling of unexpected events has been tested by manipulating the code to provoke errors and thereby verify that they are handled correctly.
+
+
+Click below to see the results of the conducted tests for each test type.
 
 <details>
-<summary>Click here to see the test cases and the results for manual testing</summary>
 
+<summary>Functional tests</summary>
 
+![Functional tests 1](docs/readme_images/ECCS_tests_func_1.jpg)
+![Functional tests 2](docs/readme_images/ECCS_test_func_2.jpg)
+![Functional tests 3](docs/readme_images/ECCS_tests_func_3.jpg)
+![Functional tests 4](docs/readme_images/ECCS_tests_func_4.jpg)
 
-| Feature            | Action                                                                                                                  | Expected results                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Result            | Comment                                                                                                        |
-| ------------------ | ----------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- | -------------------------------------------------------------------------------------------------------------- |
-| Menu               | Go to https://eccs-admin-e9a21a8f9cef.herokuapp.com/                                                                    | A terminal window will open<br>A main menu with 6 options is shown                                                                                                                                                                                                                                                                                                                                                                                                    | PASS              |                                                                                                                |
-| Show Report Status | Step 1: Choose option 1 - Show Report Status                                                                            | The screen should be cleared<br>A table with report status for each month is shown<br>Compare with the worksheet “Status_2023”.                                                                                                                                                                                                                                                                                                                                       | PASS              | To see the top of the list you have to scroll since the height of the list is larger than the terminal window. |
-|                    | Step 2: Press Enter                                                                                                     | The screen should be cleared<br>The main menu is shown                                                                                                                                                                                                                                                                                                                                                                                                                | PASS with remarks | The scroll                                                                                                     |
-| Create Report      | Prereq: Ensure that there is at least one month without a created report.<br>Step 1: Choose option 2 - Create Report    | The screen should be cleared<br>“Enter month (1-12)” should be shown<br>Cursor waiting for user input                                                                                                                                                                                                                                                                                                                                                                 | PASS              |                                                                                                                |
-|                    | Step 2: Enter the number of a month without a created report                                                            | The following lines should be shown:<br><br>Getting the price for [month]...<br>Found price for [month]: [price] SEK<br>Calculate cost per charger…<br>Creating report [report name]...<br>Updating report status…<br>Status updated.<br>Press enter to show report<br><br>A new worksheet with the name that has been shown should have been created in the spreadsheet.<br><br>The row for the chosen month should have been updated in the worksheet “Status_2023” | PASS              |                                                                                                                |
-|                    | Step 3: Press enter                                                                                                     | The screen should be cleared<br>Header Show Report is shown<br>The screen is cleared again<br>A table containing the data for the chosen month is shown.<br>Compare the table with the worksheet that has been created in the spreadsheet.                                                                                                                                                                                                                            | PASS              |                                                                                                                |
-|                    | Step 4: Press Enter                                                                                                     | The screen should be cleared<br>The main menu is shown                                                                                                                                                                                                                                                                                                                                                                                                                | PASS              |                                                                                                                |
-| Show Report        | Prereq: Ensure that there is at least one month with a created report.<br><br><br>Step 1: Choose option 3 - Show Report | The screen should be cleared<br>“Enter month (1-12)” should be shown<br>Cursor waiting for user input                                                                                                                                                                                                                                                                                                                                                                 | PASS              |                                                                                                                |
-|                    | Step 2: Enter the number of a month with a created report<br><br>Tip: Check the spreadsheet for created reports.        | The screen should be cleared<br>A table containing the data for the chosen month is shown.<br>Compare the table with the worksheet that has been created in the spreadsheet.                                                                                                                                                                                                                                                                                          | PASS              |                                                                                                                |
-|                    | Step 3: Press Enter                                                                                                     | The screen should be cleared<br>The main menu is shown                                                                                                                                                                                                                                                                                                                                                                                                                | PASS              |                                                                                                                |
-|                    |                                                                                                                         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |                   |                                                                                                                |
-| Delete Report      | Prereq: Ensure that there is at least one month with a created report.<br><br><br>Step 1: Choose option 3 - Show Report | The screen should be cleared<br>Page title “DELETE REPORT” is shown<br>“Enter month (1-12)” should be shown<br>Cursor waiting for user input                                                                                                                                                                                                                                                                                                                          | PASS              |                                                                                                                |
-|                    | Step 2: Enter the number of a month with a created report<br><br>Tip: Check the spreadsheet for created reports.        | The screen should be cleared<br>The following lines should be shown:<br><br>Deleting report for [month]...<br>Report [report name] deleted.<br>Updating report status…<br>Status for [month] updated.<br>Press enter to continue<br><br>The worksheet with the report name should have been removed from the spreadsheet.<br><br>The row for the chosen month should have been updated with empty columns in the worksheet “Status_2023”.                             | PASS              |                                                                                                                |
-|                    | Step 3: Press Enter                                                                                                     | The screen should be cleared<br>The main menu is shown                                                                                                                                                                                                                                                                                                                                                                                                                | PASS              |                                                                                                                |
-| Help               | Step 1: Choose option 5 - Help                                                                                          | The screen should be cleared<br>A help page should be shown                                                                                                                                                                                                                                                                                                                                                                                                           |                   |                                                                                                                |
-|                    | Step 2: Press Enter                                                                                                     | The screen should be cleared<br>The main menu is shown                                                                                                                                                                                                                                                                                                                                                                                                                |                   |                                                                                                                |
-| Exit               | Step 1: Choose option 6 - Exit                                                                                          | The screen should be cleared<br>The message “Exiting E.C.C.S” is shown                                                                                                                                                                                                                                                                                                                                                                                                | PASS              | dsd                                                                                                            |
+</details>
+
+<details>
+
+<summary>Validation tests (unit tests)</summary>
+
+![Unit tests](docs/readme_images/ECCS_tests_unittest.jpg)
+
+</details>
+
+<details>
+
+<summary>Validation tests</summary>
+
+![Validation tests](docs/readme_images/ECCS_tests_validation.jpg)
+
+</details>
+
+<summary>Exception handling tests</summary>
+
+![FunctionalException handling tests](docs/readme_images/ECCS_tests_exception.jpg)
 
 </details>
 
 ### PEP8 Testing
-The python files have all been passed through [PEP8 Online](http://pep8online.com/). All python files were checked with no errors reported. See screen show below:
+The python files have all been passed through [CI Python Linter](https://pep8ci.herokuapp.com/#). All python files were checked and the errors have been fixed.
+
+#### run.py ####
 
 
-### Manual testing
-All user inputs were tested thoroughly to ensure all input data is handled correctly and appropriate feedback is given to the user as follows:
+#### common.py ####
+
+#### validation.py ####
+
+#### externalprice.py ####
+
 
 
 ### Unit tests
