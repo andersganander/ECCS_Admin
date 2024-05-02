@@ -24,62 +24,21 @@ Through the Charge Amps administration interface, the cooperative's administrato
 
 MER OM ÖVRIGA FLIKAR (status och report) - bild på flikarna
 
-## Flow charts
 
-LÄGG IN FLOWCHARTs UNDER FEATURES ISTÄLLET
+## Design
+The application has been designed with simplicity and a smooth user experience in mind with respect to the choice of colors, status messages, etc.
 
-<details>
-<summary>Flow chart for main menu</summary>
+### Colors
+The colors used are chosen both to make the application more appealing and to indicate the type of information being presented. For example, red is used for error messages, green for successful operations, and white when the user is expected to make a selection. The headings on the pages are the same color across different pages to facilitate navigation.
 
-### Main menu:
+### Page design
+When the user has made their selection from the main menu, the screen is cleared before the new page is displayed to make it clear to the user that they have left the menu. The heading is clearly displayed at the top of the new page. When the application has completed what the user has requested, the user is prompted to press Enter to proceed. This is to indicate that the task has been completed.
 
-![Flow chart main menu](docs/readme_images/ECCS_flowchart_menu.jpg)
+### Status messages
+To facilitate the user experience, different types of status messages are used when various tasks are performed. For example, on the Create Report page, messages are displayed when the price is fetched from the external API, which price was fetched, when the report is being created, and when it has been created, etc
 
-</details>
-
-<details>
-<summary>Flow chart for Show Status</summary>
-
-### Show status:
-
-![Flow chart Show status](docs/readme_images/ECCS_flowchart_status.jpg)
-
-</details>
-
-<details>
-<summary>Flow chart for Create Report</summary>
-
-### Create report:
-
-![Flow chart Cretate report](docs/readme_images/ECCS_flowchart_create_report.jpg)
-
-</details>
-
-<details>
-<summary>Flow chart for Show Report</summary>
-
-### Show report:
-
-![Flow chart Show report](docs/readme_images/ECCS_flowchart_show_report.jpg)
-
-</details>
-
-<details>
-<summary>Flow chart for Delete Report</summary>
-
-### Delete report:
-
-![Flow chart Delete report](docs/readme_images/ECCS_flowchart_delete.jpg)
-
-</details>
-
-## UX
-colors
-page headings
-status messages
-clear screens
-tables
-
+### Tables
+Data from the spreadsheet is displayed in table format. This is partly because it resembles the way data is displayed in the spreadsheet, but also for clarity.
 
 ## Features
 
@@ -103,7 +62,7 @@ When the user has made their choice in the menu and the respective function is c
 <details>
 <summary>Flow chart for main menu</summary>
 
-### Main menu:
+##### Main menu:
 
 ![Flow chart main menu](docs/readme_images/ECCS_flowchart_menu.jpg)
 
@@ -114,6 +73,15 @@ The purpose of the report status page is to give the user an overview of which r
 
 <img src="docs/readme_images/ECCS_report_status.jpg"  width="300">
 <BR><I>Image from the terminal in gitpod (vscode)</I>>
+
+<details>
+<summary>Flow chart for Show Status</summary>
+
+##### Show status:
+
+![Flow chart Show status](docs/readme_images/ECCS_flowchart_status.jpg)
+
+</details>
 
 ### Create report
 When the user selects the option 'Create Report' from the menu, they are prompted to choose month. After the user enters a valid month number, the electricity price for that particular month is fetched from https://www.elprisetjustnu.se/elpris-api. Once the average price is calculated, the cost for each household is determined using the consumption data (from the consumption worksheet) and the calculated average price. Then, the report is created and added as its own worksheet in the spreadsheet. Thereafter, the status table is updated with information about the electricity price used, the name of the report, and the date the report was created.
@@ -131,6 +99,14 @@ If the electricity price cannot be retrieved from the external API, a message wi
 <img src="docs/readme_images/ECCS_create_report_mess2.jpg"  width="300">
 <BR><I>Image from the terminal in gitpod (vscode)</I>>
 
+<details>
+<summary>Flow chart for Create Report</summary>
+
+##### Create report:
+
+![Flow chart Cretate report](docs/readme_images/ECCS_flowchart_create_report.jpg)
+
+</details>
 
 ### Show report
 When the user has enter a valid month number the report for the chosen month is shown in a table. The data is retrieved for the report worksheet in the spreadsheet. 
@@ -139,6 +115,14 @@ When the user has enter a valid month number the report for the chosen month is 
 
 If the user selects a month that does not have a report, an error message is displayed.
 
+<details>
+<summary>Flow chart for Show Report</summary>
+
+##### Show report:
+
+![Flow chart Show report](docs/readme_images/ECCS_flowchart_show_report.jpg)
+
+</details>
 
 ### Delete report
 When the user selects the option 'Create Report' from the menu, they are prompted to choose month the report should cover. After the user enters a valid month number, a status message is displayed about which report has been removed. Then, status messages about the update of the status are displayed.
@@ -148,6 +132,16 @@ When the user selects the option 'Create Report' from the menu, they are prompte
 If the user selects a month that does not have a report, an error message is displayed.
 
 <img src="docs/readme_images/ECCS_delete_report_message.jpg"  width="300">
+
+<details>
+
+<summary>Flow chart for Delete Report</summary>
+
+##### Delete report:
+
+![Flow chart Delete report](docs/readme_images/ECCS_flowchart_delete.jpg)
+
+</details>
 
 ### Help
 When the user selects Help from the menu, a page with some simple instructions is displayed.
