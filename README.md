@@ -150,21 +150,15 @@ When the user selects Help from the menu, a page with some simple instructions i
 Exits the application.
 
 
-
 ### Future impriovements
-Log all activities
-Possibility to send report to accountant
-Only possible to delete report until report has been sent
-Adjustments to make it work for 2024
-Config file
-colors
-Error messages
-etc
-
-
-## Data Model
-
-I'm not sure what to write here...
+- Option to send report to the financial manager.
+  - One of the few manual tasks remaining is to email the monthly report to the financial manager. This could be done from the E C C S.
+- Limit the ability to delete reports.
+  - It is currently necessary to be able to delete reports, but going forward, this capability should be limited. Once a report has been sent to the financial manager, it should not be possible to delete it
+-  Config file
+  - External configuration file with various setting options, such as color choices, messages, timeout periods, etc.
+- Adjustments for 2024
+- Logging
 
 ## Testing
 
