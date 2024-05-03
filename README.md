@@ -244,13 +244,6 @@ The python files have all been passed through [CI Python Linter](https://pep8ci.
 #### The terminal does not clear completely after the status list has been displayed.
 When option 1 is selected and the status list for all months is displayed, the terminal does not clear correctly. The list is taller than the terminal window, and when returning to the menu, it is possible to scroll the terminal window, showing the last rows from the status table. This does not affect functionality and is only visible if one scrolls; otherwise, the pages appear as intended with the menu at the top. Currently, it is unclear whether this is a bug in how the terminal is implemented in Heroku or if there is a way to circumvent the problem by modifying the code. The bug will not be addressed at this time.
 
-## Fixed Bugs
-
-### Bug 1
-
-### Bug 2
-
-
 ## Deployment
 
 <details>
