@@ -192,6 +192,8 @@ Click below to see the results of the conducted tests for each test type.
 ![Functional tests 3](docs/readme_images/ECCS_tests_func_3.jpg)
 ![Functional tests 4](docs/readme_images/ECCS_tests_func_4.jpg)
 
+The help page was added after the tests had been conducted, but has now been tested with satisfactory results.
+
 </details>
 
 <details>
@@ -226,32 +228,26 @@ The python files have all been passed through [CI Python Linter](https://pep8ci.
 
 ### Python Libraries:
 
-
-- [os](https://docs.python.org/3/library/os.html?highlight=os#module-os) 
-  - `os.system` is used in order to clear the terminal 
-- [datetime](https://pypi.org/project/DateTime/): used to get today's date when report is created
 - [gspread](https://pypi.org/project/gspread/): to allow communication with Google Sheets. 
 - [requests](https://pypi.org/project/requests): enables data retrieval from elprisetjustnu.se.
-- [google.oauth2.service_account](https://google-auth.readthedocs.io/en/stable/index.html):  
+- [google.oauth2.service_account](https://google-auth.readthedocs.io/en/stable/index.html) 
 - [colorama](https://pypi.org/project/colorama/) - for adding colour to terminal text.
-- prettytable
+- [prettytable](https://pypi.org/project/prettytable/) - to display the data in table format.
 
 ### Programs Used
 
 - [GitHub](https://github.com/) - used for version control.
-- [Heroku](https://dashboard.heroku.com/apps) -  used to deploy the live project.
-- [Draw IO]
-- [PEP8 Online](http://pep8online.com/) - used to validate all the Python code
-- https://tabletomarkdown.com/convert-spreadsheet-to-markdown/
+- [Heroku](https://dashboard.heroku.com/apps) -  used to deploy the project.
+- [draw.io](https://app.diagrams.net/) - used to make flowcharts
+- [CI Python Linter](https://pep8ci.herokuapp.com/#) - used to validate all the Python code
 
 
 ## Known Bugs
 
-Github issues
+#### The terminal does not clear completely after the status list has been displayed.
+When option 1 is selected and the status list for all months is displayed, the terminal does not clear correctly. The list is taller than the terminal window, and when returning to the menu, it is possible to scroll the terminal window, showing the last rows from the status table. This does not affect functionality and is only visible if one scrolls; otherwise, the pages appear as intended with the menu at the top. Currently, it is unclear whether this is a bug in how the terminal is implemented in Heroku or if there is a way to circumvent the problem by modifying the code. The bug will not be addressed at this time.
 
 ## Fixed Bugs
-
-Github issues
 
 ### Bug 1
 
@@ -288,9 +284,28 @@ The site is now live and operational.
 
 ## Credits 
 ### Resources Used
-- [W3Schools](https://www.w3schools.com/)  
-- [Stack Overflow](https://stackoverflow.com/)
-
+Code to load JSON from a URL.<br>
+https://www.geeksforgeeks.org/how-to-read-a-json-response-from-a-link-in-python/
+<br>
+Gspread documentation<br>
+https://readthedocs.org/projects/gspread/downloads/pdf/latest/
+<br>
+To address an issue with the decimal comma being misplaced.
+<br>
+https://stackoverflow.com/questions/70489309/value-error-when-reading-data-from-google-sheets-with-comma-as-decimal
+<br>
+How to use colored tables in prettytable.<br>
+https://pypi.org/project/pretty-tables/
+<br>
+Lines between rows in prettytable<br>
+https://stackoverflow.com/questions/57247223/how-to-add-borderline-between-row-items-in-prettytable
+<br>
+Using docstring<br>
+https://betterprogramming.pub/the-guide-to-python-docstrings-3d40340e824b
 
 
 ## Acknowledgments
+
+I would like to thank:
+- My mentor Antonio Rodriguez for guidance and support.
+- Fellow students in the slack community.
