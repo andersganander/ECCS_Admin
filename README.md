@@ -22,7 +22,6 @@ Through the Charge Amps administration interface, the cooperative's administrato
 
 ![Exported data](docs/readme_images/ECCS_spreadsheet_1.jpg)
 
-MER OM ÖVRIGA FLIKAR (status och report) - bild på flikarna
 
 
 ## Design
@@ -78,7 +77,7 @@ The purpose of the report status page is to give the user an overview of which r
 
 ##### Show status:
 
-![Flow chart Show status](docs/readme_images/ECCS_flowchart_status.jpg)
+<img src="docs/readme_images/ECCS_flowchart_status.jpg"  width="300">
 
 </details>
 
@@ -102,7 +101,7 @@ If the electricity price cannot be retrieved from the external API, a message wi
 
 ##### Create report:
 
-![Flow chart Cretate report](docs/readme_images/ECCS_flowchart_create_report.jpg)
+<img src="docs/readme_images/ECCS_flowchart_create_report.jpg"  width="300">
 
 </details>
 
@@ -118,7 +117,7 @@ If the user selects a month that does not have a report, an error message is dis
 
 ##### Show report:
 
-![Flow chart Show report](docs/readme_images/ECCS_flowchart_show_report.jpg)
+<img src="docs/readme_images/ECCS_flowchart_show_report.jpg"  width="300">
 
 </details>
 
@@ -137,7 +136,7 @@ If the user selects a month that does not have a report, an error message is dis
 
 ##### Delete report:
 
-![Flow chart Delete report](docs/readme_images/ECCS_flowchart_delete.jpg)
+<img src="docs/readme_images/ECCS_flowchart_delete.jpg"  width="300">
 
 </details>
 
