@@ -144,7 +144,7 @@ If the user selects a month that does not have a report, an error message is dis
 ### Help
 When the user selects Help from the menu, a page with some simple instructions is displayed.
 
-<img src="docs/readme_images/???.jpg"  width="300">
+<img src="docs/readme_images/ECCS_help.jpg"  width="300">
 
 
 ### Exit
