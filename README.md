@@ -22,6 +22,10 @@ Through the Charge Amps administration interface, the cooperative's administrato
 
 ![Exported data](docs/readme_images/ECCS_spreadsheet_1.jpg)
 
+To manage reports and report tracking, the following worksheets have been added to the spreadsheet:
+- Status_2023:
+  - Status for every month. Contains price, report name (if created) and date when the report was created.
+- For each created report therw will be a corresponding worksheet (f ex Report_Jan_2023 etc)
 
 
 ## Design
@@ -150,7 +154,7 @@ When the user selects Help from the menu, a page with some simple instructions i
 Exits the application.
 
 
-### Future impriovements
+### Future improvements
 - Option to send report to the financial manager.
   - One of the few manual tasks remaining is to email the monthly report to the financial manager. This could be done from the E C C S.
 - Limit the ability to delete reports.
