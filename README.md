@@ -101,7 +101,7 @@ If the electricity price cannot be retrieved from the external API, a message wi
 
 ##### Create report:
 
-<img src="docs/readme_images/ECCS_flowchart_create_report.jpg"  width="300">
+<img src="docs/readme_images/ECCS_flowchart_create_report.jpg"  width="500">
 
 </details>
 
@@ -117,7 +117,7 @@ If the user selects a month that does not have a report, an error message is dis
 
 ##### Show report:
 
-<img src="docs/readme_images/ECCS_flowchart_show_report.jpg"  width="300">
+<img src="docs/readme_images/ECCS_flowchart_show_report.jpg"  width="500">
 
 </details>
 
@@ -136,7 +136,7 @@ If the user selects a month that does not have a report, an error message is dis
 
 ##### Delete report:
 
-<img src="docs/readme_images/ECCS_flowchart_delete.jpg"  width="300">
+<img src="docs/readme_images/ECCS_flowchart_delete.jpg"  width="500">
 
 </details>
 
