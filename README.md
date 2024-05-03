@@ -53,7 +53,7 @@ only an integer between 1 and 6 (inclusive) is accepted. If an incorrect value
 (such as a string) is entered, an error message is displayed and the user is 
 prompted to make a new choice.
 
-<img src="docs/readme_images/ECCS_screen_menu_validation.jpg"  width="300">
+<img src="docs/readme_images/ECCS_screen_menu_validation.jpg"  width="400">
 
 When the application starts, some initializations are made. Among other things, the spreadsheet with the consumption data is read. If an error occurs then (such as the spreadsheet not being available), it is handled. A message is shown, urging the user to try again later since the data could not be loaded. 
 
@@ -71,7 +71,7 @@ When the user has made their choice in the menu and the respective function is c
 ### Show report status
 The purpose of the report status page is to give the user an overview of which reports have been created and the price used. When a report is created, the name of the report and the date it was created are also saved.
 
-<img src="docs/readme_images/ECCS_report_status.jpg"  width="300">
+<img src="docs/readme_images/ECCS_report_status.jpg"  width="400">
 
 <details>
 <summary>Flow chart for Show Status</summary>
@@ -85,7 +85,7 @@ The purpose of the report status page is to give the user an overview of which r
 ### Create report
 When the user selects the option 'Create Report' from the menu, they are prompted to choose month. After the user enters a valid month number, the electricity price for that particular month is fetched from https://www.elprisetjustnu.se/elpris-api. Once the average price is calculated, the cost for each household is determined using the consumption data (from the consumption worksheet) and the calculated average price. Then, the report is created and added as its own worksheet in the spreadsheet. Thereafter, the status table is updated with information about the electricity price used, the name of the report, and the date the report was created.
 
-<img src="docs/readme_images/ECCS_create_report.jpg"  width="300">
+<img src="docs/readme_images/ECCS_create_report.jpg"  width="400">
 
 After the user presses enter, the report is displayed in the same way as if the menu option Show Report had been selected.
 
@@ -95,7 +95,7 @@ If there is already a report for the selected month, an error message is display
 
 If the electricity price cannot be retrieved from the external API, a message will be displayed about this and that a default price will be used instead. Reasons for not being able to retrieve the price could be that the site is down or that the site does not respond within the specified timeout period (currently 5 seconds).
 
-<img src="docs/readme_images/ECCS_create_report_mess2.jpg"  width="300">
+<img src="docs/readme_images/ECCS_create_report_mess2.jpg"  width="400">
 
 <details>
 <summary>Flow chart for Create Report</summary>
@@ -109,7 +109,7 @@ If the electricity price cannot be retrieved from the external API, a message wi
 ### Show report
 When the user has enter a valid month number the report for the chosen month is shown in a table. The data is retrieved for the report worksheet in the spreadsheet. 
 
-<img src="docs/readme_images/ECCS_show_report.jpg"  width="300">
+<img src="docs/readme_images/ECCS_show_report.jpg"  width="400">
 
 If the user selects a month that does not have a report, an error message is displayed.
 
@@ -144,7 +144,7 @@ If the user selects a month that does not have a report, an error message is dis
 ### Help
 When the user selects Help from the menu, a page with some simple instructions is displayed.
 
-<img src="docs/readme_images/ECCS_help.jpg"  width="300">
+<img src="docs/readme_images/ECCS_help.jpg"  width="400">
 
 
 ### Exit
@@ -286,20 +286,20 @@ The site is now live and operational.
 ### Resources Used
 Code to load JSON from a URL.<br>
 https://www.geeksforgeeks.org/how-to-read-a-json-response-from-a-link-in-python/
-<br>
+<br><br>
 Gspread documentation<br>
 https://readthedocs.org/projects/gspread/downloads/pdf/latest/
-<br>
+<br><br>
 To address an issue with the decimal comma being misplaced.
-<br>
+<br><br>
 https://stackoverflow.com/questions/70489309/value-error-when-reading-data-from-google-sheets-with-comma-as-decimal
-<br>
+<br><br>
 How to use colored tables in prettytable.<br>
 https://pypi.org/project/pretty-tables/
-<br>
+<br><br>
 Lines between rows in prettytable<br>
 https://stackoverflow.com/questions/57247223/how-to-add-borderline-between-row-items-in-prettytable
-<br>
+<br><br>
 Using docstring<br>
 https://betterprogramming.pub/the-guide-to-python-docstrings-3d40340e824b
 
