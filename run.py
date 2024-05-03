@@ -61,11 +61,11 @@ def create_report():
 
     try:
         user_price = externalprice.get_avgprice_for_month(int(user_month))
-        print(Fore.LIGHTGREEN_EX + f"Found price for {month_long}: \
-            {user_price} SEK \n")
+        print(Fore.LIGHTGREEN_EX + f"Found price for {month_long}: "\
+            f"{user_price} SEK \n")
     except Exception as e:
-        print(Fore.LIGHTRED_EX + "Something went wrong when communicating with\
-             external api")
+        print(Fore.LIGHTRED_EX + "Something went wrong when communicating "\
+             "with the external api")
         print(Fore.LIGHTRED_EX + str(e))
         print(Fore.LIGHTGREEN_EX + f"Using default price: {DEFAULT_PRICE} SEK")
         user_price = DEFAULT_PRICE
@@ -283,8 +283,19 @@ def show_report(month):
 def show_help():
     """Shows instructions for how to use the application
     """
-    print("**** HELP ****\n")
-    input("Press enter to continue")
+    print(Fore.LIGHTMAGENTA_EX + "**** HELP ****\n")
+    print(Fore.LIGHTGREEN_EX + "SHOW REPORT STATUS")
+    print("Shows the status for each month. Here one can see if a report \n"\
+        "has been created for a certain month and what price was used.\n")
+    print(Fore.LIGHTGREEN_EX + "CREATE REPORT")
+    print("Creates a report with consumption and cost per charging station\n" \
+        "for a selected month.\n")
+    print(Fore.LIGHTGREEN_EX + "SHOW REPORT")
+    print("Shows a report for a certain month.\n")
+    print(Fore.LIGHTGREEN_EX + "DELETE REPORT")
+    print("Deletes a report for a certain month and updates the report \n"\
+        "status. Can be undone by creating the same report again.")
+    input("\nPress enter to continue")
     # TODO Print help text
 # end def
 
